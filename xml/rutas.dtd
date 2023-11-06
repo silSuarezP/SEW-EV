@@ -1,0 +1,48 @@
+<!ELEMENT rutas (ruta+)>
+
+<!ELEMENT ruta (coordenadasInicio, hito+)>
+
+<!ELEMENT coordenadasInicio (#PCDATA)>
+
+<!ELEMENT bibliografia (enlace+)>
+
+<!ELEMENT hito (fotografia+, video*, distanciaHitoAnterior, coordenadasHito)>
+<!ELEMENT coordenadasHito (#PCDATA)>
+
+<!ELEMENT distanciaHitoAnterior (#PCDATA)>
+
+<!ELEMENT fotografia (#PCDATA)>
+<!ELEMENT video (#PCDATA)>
+<!ELEMENT enlace (#PCDATA)>
+
+
+<!ATTLIST   ruta
+            nombre 			        CDATA 	 #REQUIRED
+            tipo 		            CDATA 	 #REQUIRED
+            medioTransporte 	    CDATA    #REQUIRED
+            fechaInicio 	        NMTOKEN  #REQUIRED
+            duracion	            CDATA 	 #REQUIRED
+            agencia 		        CDATA 	 #REQUIRED
+            descripcion 	        CDATA 	 #REQUIRED
+            personasAdecuadas 	    CDATA 	 #REQUIRED
+            lugarInicio 	        CDATA    #REQUIRED
+            direccionInicio 	    CDATA 	 #REQUIRED
+            puntuacion	            NMTOKEN	 #REQUIRED>
+
+<!ATTLIST   coordenadasInicio
+            longitud 	            NMTOKEN  #REQUIRED
+            latitud 	            NMTOKEN  #REQUIRED
+            altitud 	            NMTOKEN  #REQUIRED>
+
+<!ATTLIST   coordenadasHito
+            longitud 	            NMTOKEN  #REQUIRED
+            latitud 	            NMTOKEN  #REQUIRED
+            altitud 	            NMTOKEN  #REQUIRED>
+
+<!ATTLIST   hito 		        
+            nombre                  CDATA 	 #REQUIRED
+            descripcion             CDATA 	 #REQUIRED>
+
+<!ATTLIST   distanciaHitoAnterior
+            kilometros              NMTOKEN  #REQUIRED
+            metros                  NMTOKEN  #REQUIRED>

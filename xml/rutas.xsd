@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.uniovi.es"
+	xmlns="http://www.uniovi.es">
+	<xs:element name="rutas">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="3" maxOccurs="unbounded" ref="ruta" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ruta">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="coordenadasInicio" />
+				<xs:element minOccurs="3" maxOccurs="unbounded" ref="hito" />
+			</xs:sequence>
+			<xs:attribute name="nombre" type="xs:string" use="required" />
+			<xs:attribute name="tipo" type="xs:string" use="required" />
+			<xs:attribute name="medioTransporte" type="xs:string" use="required" />
+			<xs:attribute name="fechaInicio" type="xs:date" use="required" />
+			<xs:attribute name="duracion" type="xs:string" use="required" />
+			<xs:attribute name="agencia" type="xs:string" use="required" />
+			<xs:attribute name="descripcion" type="xs:string" use="required" />
+			<xs:attribute name="personasAdecuadas" type="xs:string" use="required" />
+			<xs:attribute name="lugarInicio" type="xs:string" use="required" />
+			<xs:attribute name="direccionInicio" type="xs:string" use="required" />
+			<xs:attribute name="puntuacion" type="xs:integer" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="coordenadasInicio">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="longitud" type="xs:integer" use="required" />
+					<xs:attribute name="latitud" type="xs:integer" use="required" />
+					<xs:attribute name="altitud" type="xs:integer" use="required" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bibliografia">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="3" maxOccurs="unbounded" ref="enlace" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="hito">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="5" ref="fotografia" />
+				<xs:element minOccurs="0" maxOccurs="3" ref="video" />
+				<xs:element ref="distanciaHitoAnterior" />
+				<xs:element ref="coordenadasHito" />
+			</xs:sequence>
+			<xs:attribute name="nombre" type="xs:string" use="required" />
+			<xs:attribute name="descripcion" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="coordenadasHito">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="longitud" type="xs:integer" use="required" />
+					<xs:attribute name="latitud" type="xs:integer" use="required" />
+					<xs:attribute name="altitud" type="xs:integer" use="required" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="distanciaHitoAnterior">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="kilometros" type="xs:integer" use="required" />
+					<xs:attribute name="metros" type="xs:integer" use="required" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="fotografia" type="xs:string" />
+	<xs:element name="video" type="xs:string" />
+	<xs:element name="enlace" type="xs:string" />
+</xs:schema>

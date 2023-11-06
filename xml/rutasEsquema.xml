@@ -1,0 +1,105 @@
+<?xml version ="1.0" encoding ="UTF-8"?>
+
+<rutas xmlns="http://www.uniovi.es" xsi:SchemaLocation="http://www.uniovi.es rutas.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<rutas>
+    <ruta   nombre="Ruta 1"
+            tipo="Turística"
+            medioTransporte="Autobús"
+            fechaInicio="2023-10-28"
+            duracion="5 horas"
+            agencia="Agencia Maravilla"
+            descripcion="Esta ruta visita una zona de la costa y hace paradas en algunas playas."
+            personasAdecuadas="Personas de cualquier edad."
+            lugarInicio="Anabar Beach"
+            direccionInicio="FXQ3+VCX, Anabar, Nauru"
+            bibliografia=""
+            puntuacion="8.5">
+            <coordenadasInicio 
+                longitud="166.9535701783435"
+                latitud="-0.5099406101857753"
+                altitud="0">
+            </coordenadasInicio>
+            <hito
+                nombre="Hito 1"
+                descripcion="Playa Anabar">
+                <fotografia>foto1.jpg</fotografia>
+                <video>video1.mp4</video>
+                <distanciaHitoAnterior
+                    kilometros="166"
+                    metros="35">
+                </distanciaHitoAnterior>
+                <coordenadasHito
+                    longitud="166.9535701783435"
+                    latitud="-0.5099406101857753"
+                    altitud="0">
+                </coordenadasHito>
+            </hito>
+    </ruta>
+    <ruta   nombre="Ruta 2"
+    tipo="Turística"
+    medioTransporte="Autobús"
+    fechaInicio="2023-10-28"
+    duracion="5 horas"
+    agencia="Agencia Maravilla"
+    descripcion="Esta ruta visita una zona de la costa y hace paradas en algunas playas."
+    personasAdecuadas="Personas de cualquier edad."
+    lugarInicio="Anabar Beach"
+    direccionInicio="FXQ3+VCX, Anabar, Nauru"
+    bibliografia=""
+    puntuacion="8.5">
+    <coordenadasInicio 
+        longitud="166.9535701783435"
+        latitud="-0.5099406101857753"
+        altitud="0">
+    </coordenadasInicio>
+    <hito
+        nombre="Hito 1"
+        descripcion="Playa Anabar">
+        <fotografia>foto1.jpg</fotografia>
+        <video>video1.mp4</video>
+        <distanciaHitoAnterior
+            kilometros="166"
+            metros="35">
+        </distanciaHitoAnterior>
+        <coordenadasHito
+            longitud="166.9535701783435"
+            latitud="-0.5099406101857753"
+            altitud="0">
+        </coordenadasHito>
+    </hito>
+</ruta>
+<ruta   nombre="Ruta 3"
+tipo="Turística"
+medioTransporte="Autobús"
+fechaInicio="2023-10-28"
+duracion="5 horas"
+agencia="Agencia Maravilla"
+descripcion="Esta ruta visita una zona de la costa y hace paradas en algunas playas."
+personasAdecuadas="Personas de cualquier edad."
+lugarInicio="Anabar Beach"
+direccionInicio="FXQ3+VCX, Anabar, Nauru"
+bibliografia=""
+puntuacion="8.5">
+<coordenadasInicio 
+    longitud="166.9535701783435"
+    latitud="-0.5099406101857753"
+    altitud="0">
+</coordenadasInicio>
+<hito
+    nombre="Hito 1"
+    descripcion="Playa Anabar">
+    <fotografia>foto1.jpg</fotografia>
+    <video>video1.mp4</video>
+    <distanciaHitoAnterior
+        kilometros="166"
+        metros="35">
+    </distanciaHitoAnterior>
+    <coordenadasHito
+        longitud="166.9535701783435"
+        latitud="-0.5099406101857753"
+        altitud="0">
+    </coordenadasHito>
+</hito>
+</ruta>
+</rutas>
