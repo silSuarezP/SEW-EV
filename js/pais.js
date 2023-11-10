@@ -1,15 +1,4 @@
-class Pais {
-
-    // CONSTRUCTOR 1
-    // nombre, capital, poblacion, formaGobierno, coordenadasCapital, religion
-    constructor(name, capital, population, government, capitalCoordinates, religion) {
-        this.name = name;
-        this.capital = capital;
-        this.population = population;
-        this.government = government;
-        this.capitalCoordinates = capitalCoordinates;
-        this.religion = religion;
-    }
+class Pais { 
 
     // CONSTRUCTOR 2
     // nombre, capital, poblacion
@@ -19,12 +8,6 @@ class Pais {
         this.population = population;
     }
 
-
-    setOtherAttributes(government, capitalCoordinates, religion) {
-        this.government = government;
-        this.capitalCoordinates = capitalCoordinates;
-        this.religion = religion;
-    }
 
     // GETTERS
     getName() {
