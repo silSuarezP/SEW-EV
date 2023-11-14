@@ -15,11 +15,11 @@
 </head>
 
 
-    <!-- http://localhost/SEW/meteorologia.html -->
+<!-- http://localhost/SEW/meteorologia.html -->
 
 
 
-<body>
+<body onload>
     <!-- Datos con el contenido que aparece en el navegador -->
     <header>
         <h1>Escritorio virtual</h1>
@@ -37,9 +37,10 @@
 
 
 
-
+    <!-- Ejercicio 1 - javascript -->
     <script>
-        const paisNauru = new Pais("Nauru", "Yaren", 12511, "República democrática parlamentaria", "0°32′52″S 166°55′15″E", "Cristianismo");
+        paisNauru = new Pais("Nauru", "Yaren", 12511);
+        paisNauru.setOtherAttributes("República democrática parlamentaria", "0°32′52″S 166°55′15″E", "Cristianismo");
         document.write("<h3>" + paisNauru.getInfo() + "<h3>");
     </script>
 
