@@ -1,6 +1,11 @@
 // Ejercicio2 - javascript
 class Memoria {
 
+    // states of the cards
+    INIT = "init";
+    FLIP = "flip";
+    REVEALED = "revealed";
+
     /*
     hasFlippedCard -> indica si ya hay una carta dada la vuelta, default:false
     lockBoard -> indica si el tablero se encuentra bloqueado a la interacción del usuario, default:false
@@ -116,35 +121,82 @@ class Memoria {
      * 2 - pone a false las variables hasFlippedBoard y lockBoard
      */
     resetBoard() {
+        this.firstCard = null;
+        this.secondCard = null;
 
+        this.hasFlippedCard = false;
+        this.lockBoard = false;
     }
 
     /**
      * comprueba si las cartas volteadas son iguales
      *      - si lo son -> llama al método disableCards()
-     *      - si no lo son -> llama al método resetBoard()
+     *      - si no lo son -> llama al método resetBoard() (y da la vuelta a las cartas volteadas)
      * 
      * (se puede usar un operador ternario)
      */
     checkForMatch() {
-
+        if (this.firstCard.dataset.element == this.secondCard.dataset.element) {
+            this.disableCards();
+        }
+        else {
+            this.unflipCards();
+        }
     }
 
 
     /**
-     * 1 - deshabilita las interacciones sobre las tarjetas de memoria que ya hayan sido emparejadas
+     * 1 - deshabilita las interacciones sobre las tarjetas de memoria que ya hayan sido emparejadas (?) TODO
      * 2 - modifica el valor del atributo data-state a revealed 
      * 3 - invoca al método resetBoard()
      */
     disableCards() {
-
+        this.firstCard.dataset.state = this.REVEALED;
+        this.secondCard.dataset.state = this.REVEALED;
+        this.resetBoard();
     }
 
 
+    /**
+     * recorre el objeto JSON y crea por cada elemento existente en él un nodo article en el documento html para representar cada tarjeta del juego de memoria
+     */
+    createElements() {
+        var section = document.getElementsByTagName("section")[1];
+
+        for (var e in this.cards) {
+            var article = document.getElementsByTagName("article")[1];
+
+            article.setAttribute("data-element", e.element);
+            article.setAttribute("data-state", this.INIT);
+
+            var h2 = document.createElement("h2");
+            h2.innerText = "Tarjeta de memoria";
 
 
+            var image = document.createElement("img");
+            image.setAttribute("src", e.source);
+            image.setAttribute("alt", e.element);
+
+            article.append(h2);
+            article.append(image);
+            section.append(article);
+        }
+    }
 
 
+    /**
+     * recorre todas las tarjetas y provoque una llamada al método flipCard() cuando se lance dicho evento
+     */
+    addEventListeners() {
+        var article = document.getElementsByTagName("article");
+
+        for (var c in article) {
+            c.addEventListener("click", this.flipCard.bind(card, this));
+        }
+    }
+
+
+    
 
 
 

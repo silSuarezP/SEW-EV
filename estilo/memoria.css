@@ -1,0 +1,99 @@
+/*Silvia SUárez Prendes, UO277412*/
+
+/* Especificidad: 001 */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ad68c4;
+    background-color: #fff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    background-color: #9a4ea9;
+    box-shadow: 0 0.7ex 1.2ex 0.25ex #4e0b66;
+    margin: 0;
+    padding: 0;
+}
+
+header,
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: first baseline;
+    padding: 1em;
+}
+
+nav {
+    display: block;
+    position: relative;
+    gap: 0,25em;
+}
+
+nav a {
+    color: #000000;
+}
+
+li {
+    list-style-position: inside;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+ul {
+    display: block;
+    list-style-type: circle;
+    margin-block-start: 0.5em;
+    margin-block-end: 1em;
+    margin-inline-start: 0.5em;
+    margin-inline-end: 0.5em;
+    padding-inline-start: 0.5em;
+}
+
+
+
+
+
+
+/* Especificidad: 001*/
+h1 {
+    color: #000000;
+    background-color: #9a4ea9;
+    padding: 2em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Especificidad: 001 */
+article {
+    /* Otras propiedades de estilo para los artículos */
+    width: 200px;
+    height: 300px;
+    perspective: 1000px;
+    /* Define la perspectiva para el efecto 3D */
+    transition: transform 0.5s;
+    /* Establece la transición de transformación a medio segundo */
+}
+
+/* Especificidad: 011 */
+article:hover {
+    transform: rotateY(180deg);
+    /* Voltea la tarjeta en el eje Y cuando el usuario pasa el ratón sobre ella */
+}
+
+/* Especificidad: 002 */
+article img,
+article h2 {
+    backface-visibility: hidden;
+    /* Oculta las caras traseras de la tarjeta para evitar parpadeos */
+}
+
+/* Especificidad: 002 */
+article img {
+    transform: rotateY(180deg);
+    /* Gira la imagen en el eje Y para que esté oculta inicialmente */
+}
+
+
