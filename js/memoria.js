@@ -74,8 +74,8 @@ class Memoria {
 
 
         this.shuffleElements();
-        // this.createElements();
-        // this.addEventListeners();
+        this.createElements();
+        this.addEventListeners();
     }
 
 
@@ -195,8 +195,39 @@ class Memoria {
         }
     }
 
+    /**
+     * se encarga de dar la vuelta a las tarjetas cuando estas sean pulsadas por el usuario. recibe como parámetro una variable "game" que representa el juego
+     */
+    flipCard(game) {
+        // IFs
+        // si la tarjeta pulsada ya está revelada y formaba parte de una pareja ya descubierta (data-state=revealed), return
+        if (this.dataset.state == game.REVEALED)
+            return;
 
-    
+        // si lockBoard=true, return
+        if (game.lockBoard)
+            return;
+
+        // si la tarjeta pulsada por el usuario coincide con la tarjeta pulsada anteriormente como primer elemento de la pareja actual (firstCard) return
+        if (this == game.firstCard)
+            return;
+
+
+        // ELSE
+        this.dataset.state = game.FLIP;
+        // si el juego ya tenía una tarjeta volteada 
+        if (game.hasFlippedCard) {
+            // asignar la variable secondCard a this e invocar checkForMatch()
+            game.secondCard = this;
+            game.checkForMatch();
+        }
+        else {
+            game.flippedCard = true;
+            game.firstCard = this;
+        }
+    }
+
+
 
 
 

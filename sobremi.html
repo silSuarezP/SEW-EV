@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sobre mí</title>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/estilo-sobremi.css" />
 </head>
 
 <body>
@@ -33,10 +34,10 @@
         <h3>Datos personales</h3>
 
         <picture>
-            <source media="(min-width: 800px)" srcset="multimedia/imagenes/personal_big.jpg">
-            <source media="(max-width: 799px)" srcset="multimedia/imagenes/personal_medium.jpg">
-            <source media="(max-width: 465px)" srcset="multimedia/imagenes/personal_small.jpg">
-            <img alt="Imagen de Silvia en un aeropuerto" src="multimedia/imagenes/personal_big.jpg">
+            <source media="(min-width: 800px)" srcset="multimedia/fotos/silvia_normal.jpg">
+            <source media="(max-width: 799px)" srcset="multimedia/fotos/silvia_normal.jpg">
+            <source media="(max-width: 465px)" srcset="multimedia/fotos/silvia_normal.jpg">
+            <img alt="Imagen de Silvia en un aeropuerto" src="multimedia/fotos/silvia_normal.jpg">
         </picture>
 
         <p>Mi nombre es Silvia Suárez Prendes y nací en Pravia (Asturias), pero actualmente vivo en San Juan de la
@@ -50,7 +51,6 @@
             adelante me gustaría hacer algún tipo de formación relacionada con audiovisuales.</p>
     </section>
 
-    </section>
     <section>
         <h3>Aficiones</h3>
         <p>Mis principales aficiones son:.</p>
@@ -71,13 +71,16 @@
                 Viajar.
             </li>
         </ul>
+
         <picture>
-            <source media="(min-width: 800px)" srcset="multimedia/imagenes/guitarra_pequeño.jpg">
-            <source media="(max-width: 799px)" srcset="multimedia/imagenes/guitarra_normal.jpg">
-            <source media="(max-width: 465px)" srcset="multimedia/imagenes/guitarra_grande.jpg">
-            <img alt="Imagen de Silvia tocando la guitarra" src="multimedia/imagenes/guitarra_normal.jpg">
+            <source media="(min-width: 800px)" srcset="multimedia/fotos/guitarra_normal.jpg">
+            <source media="(max-width: 799px)" srcset="multimedia/fotos/guitarra_normal.jpg">
+            <source media="(max-width: 465px)" srcset="multimedia/fotos/guitarra_normal.jpg">
+            <img alt="Imagen de Silvia tocando la guitarra" src="multimedia/fotos/guitarra_normal.jpg">
         </picture>
+
     </section>
+
     <section>
         <h3>Cantantes y grupos favoritos</h3>
         <p>Tengo un gusto musical muy variado, pero una pequeña selección de mis cantantes y grupos favoritos podría ser
@@ -95,14 +98,17 @@
             <li>Leiva</li>
             <li>Morgan</li>
         </ol>
+        
         <audio controls>
             <source src="multimedia/audios/Leningrado.mp3" type="audio/mp3" />
             <source src="multimedia/audios/Leningrado.wav" type="audio/wav" />
         </audio>
+
         <video controls preload="auto">
             <source src="multimedia/videos/Nadie_sabe_lo_que_pasa.mp4" type="video/mp4" />
         </video>
     </section>
+
     <section>
         <h3>Asignaturas favoritas</h3>
         <p>En todo lo que llevo de grado, hay algunas asignaturas que puedo destacar como favoritas o más interesantes.
@@ -127,6 +133,7 @@
                 Contexto, Grafos y Lenguajes Recursivos y Recursivamente Enumerables.</dd>
         </dl>
     </section>
+
     <!-- uso article porque si saco el contenido de las temperaturas a otro sitio de la página web, el contenido se sigue entendiendo. es autocontenido -->
     <article>
         <h2>Temperaturas en San Juan de la Arena</h2>
@@ -185,6 +192,7 @@
             </tr>
         </table>
     </article>
+
 </body>
 
 </html>
