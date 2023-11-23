@@ -166,7 +166,7 @@ class Memoria {
         for (var e in this.cards) {
             var article = document.getElementsByTagName("article")[1];
 
-            article.setAttribute("data-element", e.element);
+            article.setAttribute("data-element", this.cards[e].element);
             article.setAttribute("data-state", this.INIT);
 
             var h2 = document.createElement("h2");
@@ -174,8 +174,8 @@ class Memoria {
 
 
             var image = document.createElement("img");
-            image.setAttribute("src", e.source);
-            image.setAttribute("alt", e.element);
+            image.setAttribute("src", this.cards[e].source);
+            image.setAttribute("alt", this.cards[e].element);
 
             article.append(h2);
             article.append(image);
