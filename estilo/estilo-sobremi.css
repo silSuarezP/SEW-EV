@@ -1,0 +1,47 @@
+/*Especificidad: 001*/
+table {
+    table-layout: auto;
+    width: auto;
+    border-collapse: separate;
+    margin: 1em auto 3em;
+}
+
+table, /*Especificidad: 001*/
+th, /*Especificidad: 001*/
+td, /*Especificidad: 001*/
+caption /*Especificidad: 001*/ {
+    border: black 0.15em solid;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+/*Especificidad: 001*/
+caption {
+    font-weight: bold;
+    padding: 0.7em 0em;
+    background-color: #627E8B;
+}
+
+@media only screen and (max-width: 1280px) {
+    /*Especificidad: 001*/
+    section {
+        display: block;
+        width: 100%;
+        float: none;
+        background-color: rgb(229, 246, 250);
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+    }
+    /*Especificidad: 002*/
+    section picture {
+        margin-left: 20%;
+    }
+    /*Especificidad: 002*/
+    section h2 {
+        margin: 1em;
+    }
+}

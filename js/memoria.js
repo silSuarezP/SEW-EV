@@ -74,8 +74,8 @@ class Memoria {
 
 
         this.shuffleElements();
-        // this.createElements();
-        // this.addEventListeners();
+        this.createElements();
+        this.addEventListeners();
     }
 
 
@@ -157,9 +157,75 @@ class Memoria {
     }
 
 
-    
+    /**
+     * recorre el objeto JSON y crea por cada elemento existente en él un nodo article en el documento html para representar cada tarjeta del juego de memoria
+     */
+    createElements() {
+        var section = document.getElementsByTagName("section")[1];
+
+        for (var e in this.cards) {
+            var article = document.getElementsByTagName("article")[1];
+
+            article.setAttribute("data-element", e.element);
+            article.setAttribute("data-state", this.INIT);
+
+            var h2 = document.createElement("h2");
+            h2.innerText = "Tarjeta de memoria";
 
 
+            var image = document.createElement("img");
+            image.setAttribute("src", e.source);
+            image.setAttribute("alt", e.element);
+
+            article.append(h2);
+            article.append(image);
+            section.append(article);
+        }
+    }
+
+
+    /**
+     * recorre todas las tarjetas y provoque una llamada al método flipCard() cuando se lance dicho evento
+     */
+    addEventListeners() {
+        var article = document.getElementsByTagName("article");
+
+        for (var c in article) {
+            c.addEventListener("click", this.flipCard.bind(card, this));
+        }
+    }
+
+    /**
+     * se encarga de dar la vuelta a las tarjetas cuando estas sean pulsadas por el usuario. recibe como parámetro una variable "game" que representa el juego
+     */
+    flipCard(game) {
+        // IFs
+        // si la tarjeta pulsada ya está revelada y formaba parte de una pareja ya descubierta (data-state=revealed), return
+        if (this.dataset.state == game.REVEALED)
+            return;
+
+        // si lockBoard=true, return
+        if (game.lockBoard)
+            return;
+
+        // si la tarjeta pulsada por el usuario coincide con la tarjeta pulsada anteriormente como primer elemento de la pareja actual (firstCard) return
+        if (this == game.firstCard)
+            return;
+
+
+        // ELSE
+        this.dataset.state = game.FLIP;
+        // si el juego ya tenía una tarjeta volteada 
+        if (game.hasFlippedCard) {
+            // asignar la variable secondCard a this e invocar checkForMatch()
+            game.secondCard = this;
+            game.checkForMatch();
+        }
+        else {
+            game.flippedCard = true;
+            game.firstCard = this;
+        }
+    }
 
 
 
