@@ -1,6 +1,11 @@
 // Ejercicio2 - javascript
 class Memoria {
 
+    // states of the cards
+    INIT = "init";
+    FLIP = "flip";
+    REVEALED = "revealed";
+
     /*
     hasFlippedCard -> indica si ya hay una carta dada la vuelta, default:false
     lockBoard -> indica si el tablero se encuentra bloqueado a la interacción del usuario, default:false
@@ -116,31 +121,43 @@ class Memoria {
      * 2 - pone a false las variables hasFlippedBoard y lockBoard
      */
     resetBoard() {
+        this.firstCard = null;
+        this.secondCard = null;
 
+        this.hasFlippedCard = false;
+        this.lockBoard = false;
     }
 
     /**
      * comprueba si las cartas volteadas son iguales
      *      - si lo son -> llama al método disableCards()
-     *      - si no lo son -> llama al método resetBoard()
+     *      - si no lo son -> llama al método resetBoard() (y da la vuelta a las cartas volteadas)
      * 
      * (se puede usar un operador ternario)
      */
     checkForMatch() {
-
+        if (this.firstCard.dataset.element == this.secondCard.dataset.element) {
+            this.disableCards();
+        }
+        else {
+            this.unflipCards();
+        }
     }
 
 
     /**
-     * 1 - deshabilita las interacciones sobre las tarjetas de memoria que ya hayan sido emparejadas
+     * 1 - deshabilita las interacciones sobre las tarjetas de memoria que ya hayan sido emparejadas (?) TODO
      * 2 - modifica el valor del atributo data-state a revealed 
      * 3 - invoca al método resetBoard()
      */
     disableCards() {
-
+        this.firstCard.dataset.state = this.REVEALED;
+        this.secondCard.dataset.state = this.REVEALED;
+        this.resetBoard();
     }
 
 
+    
 
 
 
