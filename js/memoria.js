@@ -164,7 +164,7 @@ class Memoria {
         var section = document.getElementsByTagName("section")[1];
 
         for (var e in this.cards) {
-            var article = document.getElementsByTagName("article")[1];
+            var article = document.createElement("article");
 
             article.setAttribute("data-element", this.cards[e].element);
             article.setAttribute("data-state", this.INIT);
@@ -190,8 +190,9 @@ class Memoria {
     addEventListeners() {
         var article = document.getElementsByTagName("article");
 
-        for (var c in article) {
-            c.addEventListener("click", this.flipCard.bind(card, this));
+        for (let i=0; i < article.length; i++) {
+            let c = article[i];
+            c.addEventListener("click", this.flipCard.bind(c, this));
         }
     }
 
