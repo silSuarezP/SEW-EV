@@ -1,4 +1,4 @@
-/*Silvia SUárez Prendes, UO277412*/
+/*Silvia SUÃ¡rez Prendes, UO277412*/
 
 /* Especificidad: 001*/
 section:last-of-type {
@@ -21,16 +21,24 @@ section:last-of-type>h2 {
     margin: auto;
 }
 
+
+/* Especificidad: 012*/
+section:last-of-type>h2 {
+    width: 100%;
+    text-align: center;
+}
+
 /*Especificidad: 001*/
 article {
-    flex: 1 0 calc(25% - 1em);
-    position: relative;
-    height: 14em;
-    box-shadow: 0 .5ex .5ex #042034;
+    flex: 0 20%;
+    gap: 10ex;
+    height: 10em;
+    box-shadow: 0.1ex .1ex .8ex #042034;
     cursor: pointer;
     transform: scale(1);
     transform-style: preserve-3d;
-    transition: transform .25s;
+    transition: transform .5s;
+    position: relative;
 }
 
 /*Especificidad: 002*/
@@ -39,12 +47,12 @@ article h3,
 article img {
     backface-visibility: hidden;
     margin: 0;
-    padding: 0;
+    padding: 0em;
     width: 100%;
     height: 100%;
     position: absolute;
+    display: flex;
 }
-
 /*Especificidad: 002*/
 article h3 {
     display: flex;
@@ -53,47 +61,34 @@ article h3 {
     justify-content: center;
     text-align: center;
 }
-
 /*Especificidad: 002*/
-article img {
-    width: 100%;
+article img {    
     transform: rotateY(180deg);
 }
-
 /*Especificidad: 011*/
-article[data-state="flip"] {
+article[data-state = "flip"] {
     transform: rotateY(180deg);
 }
-
 /*Especificidad: 011*/
-article[data-state="revealed"] {
+article[data-state = "revealed"] {
     transform: rotateY(180deg);
-}
-
-/*Especificidad: 011*/
-article:first-child {
-    flex: 1 0 100%;     /* El primer elemento ocupa toda la primera fila */
 }
 
 @media only screen and (max-width: 1280px) {
-
     /*Especificidad: 011*/
     section:last-of-type {
-        width: 100%;
+        width: 90%;
         margin-bottom: 1em;
     }
 }
 
-@media only screen and (max-width: 768px) {
-
+@media only screen and (max-width: 768px) { 
     /*Especificidad: 002*/
     article h3 {
-        font-size: 1em;
+        font-size: .9em;
     }
-
     /*Especificidad: 011*/
     section:last-of-type {
         gap: 1ex 1ex;
         width: 100%;
     }
-}

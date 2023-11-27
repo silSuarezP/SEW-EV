@@ -85,7 +85,7 @@ class Memoria {
      * (se puede utilizar cualquier método de ordenación para recorrer y barajar los elemntos (durstendfeld))
      */
     shuffleElements() {
-        const cards = this.tarjetas.cards;
+        const cards = this.cards;
 
         for (let i = cards.length - 1; i > 0; i--) {
 
@@ -136,7 +136,7 @@ class Memoria {
      * (se puede usar un operador ternario)
      */
     checkForMatch() {
-        if (this.firstCard.dataset.element == this.secondCard.dataset.element) {
+        if (this.firstCard.isEqualNode(this.secondCard)) {
             this.disableCards();
         }
         else {
@@ -146,7 +146,7 @@ class Memoria {
 
 
     /**
-     * 1 - deshabilita las interacciones sobre las tarjetas de memoria que ya hayan sido emparejadas (?) TODO
+     * 1 - deshabilita las interacciones sobre las tarjetas de memoria que ya hayan sido emparejadas
      * 2 - modifica el valor del atributo data-state a revealed 
      * 3 - invoca al método resetBoard()
      */
@@ -169,7 +169,7 @@ class Memoria {
             article.setAttribute("data-element", this.cards[e].element);
             article.setAttribute("data-state", this.INIT);
 
-            var h2 = document.createElement("h2");
+            var h2 = document.createElement("h3");
             h2.innerText = "Tarjeta de memoria";
 
 
@@ -190,7 +190,7 @@ class Memoria {
     addEventListeners() {
         var article = document.getElementsByTagName("article");
 
-        for (let i=0; i < article.length; i++) {
+        for (let i = 0; i < article.length; i++) {
             let c = article[i];
             c.addEventListener("click", this.flipCard.bind(c, this));
         }

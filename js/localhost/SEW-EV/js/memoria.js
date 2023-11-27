@@ -169,7 +169,7 @@ class Memoria {
             article.setAttribute("data-element", this.cards[e].element);
             article.setAttribute("data-state", this.INIT);
 
-            var h2 = document.createElement("h2");
+            var h2 = document.createElement("h3");
             h2.innerText = "Tarjeta de memoria";
 
 
