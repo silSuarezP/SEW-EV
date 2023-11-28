@@ -1,82 +1,77 @@
 // Ejercicio2 - javascript
-class Memoria {
+class Sudoku {
 
+    BOARD = ["3.4.69.5....27...49.2..4....2..85.198.9...2.551.39..6....8..5.32...46....4.75.9.6",
+        "23.94.67.8..3259149..76.32.1.....7925.321.4864..68.5317..1....96598721433...9...7",
+        "8.4.71.9.976.3....5.196....3.7495...692183...4.5726..92483591..169847...753612984"];
     // states of the cards
-    INIT = "init";
-    FLIP = "flip";
-    REVEALED = "revealed";
+    BLOCKED = "blocked";
+    CLICKED = "clicked";
+    CORRECT = "correct";
 
     /*
-        hasFlippedCard -> indica si ya hay una carta dada la vuelta, default:false
-        lockBoard -> indica si el tablero se encuentra bloqueado a la interacción del usuario, default:false
-        firstCard -> indica cuál es la primera carta a la que se ha dado la vuelta en esta interacción, default: null
-        secondCard -> indica cuál es la segunda carta a la que se ha dado la vuelta en esta interacción, default: null
+        blocked -> contiene un número desde el inicio del sudoku
+        clicked -> ha sido pulsada por el usuario
+        correct -> ha sido rellenada por el usuario
      */
-
+    
     constructor() {
-        this.cards = [
-            {
-                "element": "HTML5",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/3/38/HTML5_Badge.svg"
-            },
-            {
-                "element": "HTML5",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/3/38/HTML5_Badge.svg"
-            },
-            {
-                "element": "CSS3",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"
-            },
-            {
-                "element": "CSS3",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"
-            },
-            {
-                "element": "JS",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Javascript_badge.svg"
-            },
-            {
-                "element": "JS",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Javascript_badge.svg"
-            },
-            {
-                "element": "PHP",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg"
-            },
-            {
-                "element": "PHP",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg"
-            },
-            {
-                "element": "SVG",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg"
-            },
-            {
-                "element": "SVG",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg"
-            },
-            {
-                "element": "W3C",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/5/5e/W3C_icon.svg"
-            },
-            {
-                "element": "W3C",
-                "source": "https://upload.wikimedia.org/wikipedia/commons/5/5e/W3C_icon.svg"
-            }
-        ]
-
-        // default values
-        this.hasFlippedCard = false;
-        this.lockBoard = false;
-        this.firstCard = null;
-        this.secondCard = null;
-
-
-        this.shuffleElements();
-        this.createElements();
-        this.addEventListeners();
+        this.numRows = 9;
+        this.numCols = 9;
+        this.arrayBoard;
     }
 
+
+    /**
+     * pone valores dentro de las celdas del array bidimensional "arrayBoard"
+     * el valor de cada posición se debe tomar de la cadena this.BOARD que se recorre caracter a caracter
+     *      - si el valor en es numérico -> vuelca el mismo número en el array
+     *      - si el valor es un "." -> introduce un 0 en dicha posición del array
+     */
+    start() {
+        let index = 0;
+        let option = this.BOARD[Math.floor(Math.random() * 3)];
+
+        for (let i = 0; i < this.numRows; i++) {
+            for (let j = 0; j < this.numCols; j++) {
+                let v = option[index++];
+                if (v != '.')
+                    this.arrayBoard[i][j] = parseInt(v);
+                else
+                    this.arrayBoard[i][j] = 0;
+            }
+        }
+    }
+
+    /**
+     * crea en el documento HTML los párrafos que representarán las celdas del sudoku
+     */
+    createStructure()  {
+        let main = document.getElementsByTagName("main")[0];
+
+        for (let i = 0; i < this.numRows; i++) {
+            for (let j = 0; j < this.numCols; j++) {
+                let v = this.arrayBoard[i][j];
+                let par = document.createElement("p");
+                
+                par.setAttribute("data-row", i);
+                par.setAttribute("data-col", j);
+
+                if (v == 0) {
+                    par.setAttribute("data-state", this.INIT);
+                    par.addEventListener("click", this.clickCell.bind(par, this));
+                }
+
+            }
+        }
+    }
+
+    /**
+     * pone dentro de cada párrafo el valor que corresponda
+     */
+    paintSudoku() {
+
+    }
 
     /**
      * coge el objeto JSON y baraja los elementos 

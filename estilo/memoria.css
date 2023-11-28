@@ -4,11 +4,9 @@
 section:last-of-type {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    /* Espaciado entre las tarjetas */
-    justify-content: space-between;
-    /* Distribuye el espacio entre las tarjetas */
-    width: 100%;
+    gap: 1.2ex 2.2ex;
+    justify-content: center;
+    width: 40%;
     text-align: center;
     margin: auto;
 }
@@ -25,12 +23,13 @@ section:last-of-type>h2 {
 article {
     flex: 1 0 calc(25% - 1em);
     position: relative;
-    height: 14em;
-    box-shadow: 0 .5ex .5ex #042034;
+    height: 15em;
+    background-color: #D5BCA2;
+    box-shadow: 0 .5ex .5ex #142270;
     cursor: pointer;
     transform: scale(1);
     transform-style: preserve-3d;
-    transition: transform .25s;
+    transition: transform .15s;
 }
 
 /*Especificidad: 002*/
@@ -43,6 +42,7 @@ article img {
     width: 100%;
     height: 100%;
     position: absolute;
+    display: block
 }
 
 /*Especificidad: 002*/
@@ -52,6 +52,7 @@ article h3 {
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-weight: bold;
 }
 
 /*Especificidad: 002*/
@@ -72,7 +73,7 @@ article[data-state="revealed"] {
 
 /*Especificidad: 011*/
 article:first-child {
-    flex: 1 0 100%;     /* El primer elemento ocupa toda la primera fila */
+    flex: 1 0 100%; 
 }
 
 @media only screen and (max-width: 1280px) {

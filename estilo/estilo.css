@@ -6,12 +6,11 @@ header {
     justify-content: space-between;
     align-items: center;
     color: #ffffff;
-    background-color: #ADCFD7;
+    background-color: #84B6F4;
     box-shadow: 0 0.7ex 1.2ex 0.25ex #042034;
     margin: 0;
     padding: 0;
 }
-
 
 /* Especificidad: 001 */
 body {
@@ -26,7 +25,7 @@ body {
 h1 {
     font-family: Vegur, 'PT Sans', Verdana, sans-serif;
     color: #042034;
-    background-color: #ADCFD7;
+    background-color: #84B6F4;
     padding: 1em;
     text-transform: uppercase;
     text-align: center;
@@ -39,37 +38,7 @@ h3 {
     color: #042034;
 }
 
-/* Especificidad: 001*/
-/* Especificidad: 001*/
-header,
-nav {
-    display: flex;
-    flex-direction: row;
-    align-items: first baseline;
-    padding: 1em;
-}
 
-/* Especificidad: 001*/
-nav {
-    display: block;
-    position: relative;
-    gap: 0, 25em;
-}
-
-/* Especificidad: 002*/
-nav a {
-    color: #042034;
-}
-
-/* Especificidad: 011*/
-a:hover {
-    background: #5699cc;
-}
-
-/*Especificidad: 011*/
-a:visited {
-    color: #042034;
-}
 
 /* Especificidad: 001*/
 li {
