@@ -14,11 +14,11 @@ class Sudoku {
         clicked -> ha sido pulsada por el usuario
         correct -> ha sido rellenada por el usuario
      */
-    
+
     constructor() {
         this.numRows = 9;
         this.numCols = 9;
-        this.arrayBoard;
+        this.arrayBoard = new Array(this.numRows).fill(0).map(() => new Array(this.numCols).fill(0));
     }
 
 
@@ -61,175 +61,28 @@ class Sudoku {
                     par.setAttribute("data-state", this.INIT);
                     par.addEventListener("click", this.clickCell.bind(par, this));
                 }
-
+                else {
+                    par.textContent = v;
+                    par.setAttribute("data-state", this.BLOCKED);
+                }
+                main.append(par);
             }
         }
+    }
+
+    clickCell(game) {
+        // if (game.CLICKED)
     }
 
     /**
      * pone dentro de cada párrafo el valor que corresponda
      */
     paintSudoku() {
-
+        this.createStructure();
     }
-
-    /**
-     * coge el objeto JSON y baraja los elementos 
-     * 
-     * (se puede utilizar cualquier método de ordenación para recorrer y barajar los elemntos (durstendfeld))
-     */
-    shuffleElements() {
-        const cards = this.cards;
-
-        for (let i = cards.length - 1; i > 0; i--) {
-
-            // genera un número entre 0 y i (porque i+1 no está incluído en el rango)
-            const j = Math.floor(Math.random() * (i + 1));
-
-            // intercambio de los elementos
-            [cards[i], cards[j]] = [cards[j], cards[i]];
-        }
-    }
-
-
-    /**
-     * 1 - bloquea el tablero (lockBoard=true)
-     * 2 - voltea las cartas que estén bocarriba (cómo sabemos???)
-     * 3 - resetea el tablero
-     * 
-     * nota: para que la ejecución del volteo de las tarjetas y el reseteo del tablero se realice con cierto margen temporal después del volteo de la segunda tarjeta, se puede meter dentro un delay utilizando el método setTimeOut() de ECMAScript
-     */
-    unflipCards() {
-        this.lockBoard = true; // bloquear el tablero
-
-        setTimeout(() => {
-            this.firstCard.dataset.state = this.INIT;
-            this.secondCard.dataset.state = this.INIT;
-            this.resetBoard();
-        }, 1200); // miliseconds
-
-        console.log("the cards do not match :( try again!");
-    }
-
-    /**
-     * 1 - settea a null las variables firstCard y secondCard 
-     * 2 - pone a false las variables hasFlippedBoard y lockBoard
-     */
-    resetBoard() {
-        this.firstCard = null;
-        this.secondCard = null;
-
-        this.hasFlippedCard = false;
-        this.lockBoard = false;
-    }
-
-    /**
-     * comprueba si las cartas volteadas son iguales
-     *      - si lo son -> llama al método disableCards()
-     *      - si no lo son -> llama al método resetBoard() (y da la vuelta a las cartas volteadas)
-     * 
-     * (se puede usar un operador ternario)
-     */
-    checkForMatch() {
-        if (this.firstCard.isEqualNode(this.secondCard)) {
-            this.disableCards();
-        }
-        else {
-            this.unflipCards();
-        }
-    }
-
-
-    /**
-     * 1 - deshabilita las interacciones sobre las tarjetas de memoria que ya hayan sido emparejadas
-     * 2 - modifica el valor del atributo data-state a revealed 
-     * 3 - invoca al método resetBoard()
-     */
-    disableCards() {
-        this.firstCard.dataset.state = this.REVEALED;
-        this.secondCard.dataset.state = this.REVEALED;
-        this.resetBoard();
-    }
-
-
-    /**
-     * recorre el objeto JSON y crea por cada elemento existente en él un nodo article en el documento html para representar cada tarjeta del juego de memoria
-     */
-    createElements() {
-        var section = document.getElementsByTagName("section")[1];
-
-        for (let i = 0; i < this.cards.length; i++) {
-            let e = this.cards[i];
-            let article = document.createElement("article");
-
-            article.setAttribute("data-element", e.element);
-            article.setAttribute("data-state", this.INIT);
-
-            let h2 = document.createElement("h3");
-            h2.innerText = "Tarjeta de memoria";
-
-
-            let image = document.createElement("img");
-            image.setAttribute("src", e.source);
-            image.setAttribute("alt", e.element);
-
-            article.append(h2);
-            article.append(image);
-            section.append(article);
-        }
-    }
-
-
-    /**
-     * recorre todas las tarjetas y provoque una llamada al método flipCard() cuando se lance dicho evento
-     */
-    addEventListeners() {
-        var article = document.getElementsByTagName("article");
-
-        for (let i = 0; i < article.length; i++) {
-            let c = article[i];
-            c.addEventListener("click", this.flipCard.bind(c, this));
-        }
-    }
-
-    /**
-     * se encarga de dar la vuelta a las tarjetas cuando estas sean pulsadas por el usuario. recibe como parámetro una variable "game" que representa el juego
-     */
-    flipCard(game) {
-        console.log("flipCard: " + this.dataset.state);
-        // IFs
-        // si la tarjeta pulsada ya está revelada y formaba parte de una pareja ya descubierta (data-state=revealed), return
-        if (this.dataset.state == game.REVEALED)
-            return;
-
-        // si lockBoard=true, return
-        if (game.lockBoard)
-            return;
-
-        // si la tarjeta pulsada por el usuario coincide con la tarjeta pulsada anteriormente como primer elemento de la pareja actual (firstCard) return
-        if (this == game.firstCard)
-            return;
-
-
-        // ELSE
-        this.dataset.state = game.FLIP;
-        // si el juego ya tenía una tarjeta volteada 
-        if (game.hasFlippedCard) {
-            // asignar la variable secondCard a this e invocar checkForMatch()
-            game.secondCard = this;
-            game.checkForMatch();
-        }
-        else {
-            game.hasFlippedCard = true;
-            game.firstCard = this;
-        }
-    }
-
-
-
-
 
 }
 
 
-var mem = new Memoria();
+var sud = new Sudoku();
+sud.start();

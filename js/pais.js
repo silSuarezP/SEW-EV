@@ -5,7 +5,7 @@ class Pais {
     // CONSTRUCTOR 2
     // nombre, capital, poblacion
     constructor(name, capitalName, population) {
-        this.name = hola;
+        this.name = name;
         this.capitalName = capitalName;
         this.population = population;
     }
