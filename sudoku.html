@@ -9,7 +9,6 @@
     <meta name="keywords" content="Juegos" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Juegos: Sudoku</title>
-    <link rel="stylesheet" type="text/css" href="estilo/memoria.css" />
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
     <link rel="stylesheet" type="text/css" href="estilo/sudoku.css" />
@@ -37,18 +36,16 @@
         <ul>
             <li><a href="memoria.html">Memoria</a></li>
             <li><a href="sudoku.html">Sudoku</a></li>
-            <li><a href="crucigrama.html">Crucigrama</a></li>
+            <li><a href="crucigrama.php">Crucigrama</a></li>
         </ul>
     </section>
-
 
     <section>
         <h2>Sudoku</h2>
     </section>
 
-
     <main>
-            
+
 
     </main>
 
@@ -56,8 +53,10 @@
 
 <script>
     sud.paintSudoku();
+    document.addEventListener('keydown', function (event) {
+        sud.keydown(event);
+    });
 </script>
-
 
 
 

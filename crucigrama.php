@@ -8,13 +8,17 @@
     <meta name="description" content="Juegos" />
     <meta name="keywords" content="Juegos" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Juegos</title>
+    <title>Juegos: Crucigrama</title>
+    <link rel="stylesheet" type="text/css" href="estilo/memoria.css" />
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/crucigrama.css" />
+
+    <script src="js/crucigrama.js"></script>
 </head>
 
+
 <body>
-    <!-- Datos con el contenido que aparece en el navegador -->
     <header>
         <h1>Escritorio virtual</h1>
         <nav>
@@ -28,8 +32,6 @@
         </nav>
     </header>
 
-
-    <!-- Ejercicio2 - javascript -->
     <section>
         <h2>Juegos</h2>
         <ul>
@@ -40,6 +42,23 @@
     </section>
 
 
+    <section>
+        <h2>Crucigrama</h2>
+    </section>
+
+
+    <main>
+            
+
+    </main>
+
 </body>
+
+<script>
+    // TODO
+</script>
+
+
+
 
 </html>
