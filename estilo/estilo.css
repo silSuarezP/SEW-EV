@@ -19,6 +19,8 @@ body {
     background-color: rgb(229, 246, 250);
     margin-left: 2em;
     font-size: 1em;
+    text-align: justify;
+    padding: 2em;
 }
 
 /* Especificidad: 001*/
@@ -42,7 +44,7 @@ h3 {
 li {
     list-style-position: inside;
     display: list-item;
-    text-align: -webkit-match-parent;
+    text-align: left;
 }
 
 /* Especificidad: 001*/

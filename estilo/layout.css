@@ -15,7 +15,7 @@ nav {
 nav {
     display: block;
     position: relative;
-    gap: 0, 25em;
+    gap: 0 25em;
 }
 
 /* Especificidad: 002*/
@@ -85,7 +85,7 @@ header a:active {
     nav ul {
         display: block;
         position: relative;
-        gap: 0, 25em;
+        gap: 0 25em;
     }
     /*Especificidad: 002*/
     nav ul li {
