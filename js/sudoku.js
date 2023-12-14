@@ -64,9 +64,6 @@ class Sudoku {
 
                 par.setAttribute("data-row", i);
                 par.setAttribute("data-col", j);
-
-                console.log(v);
-
                 if (v == 0) {
                     par.setAttribute("data-state", this.INIT);
                     par.addEventListener("click", this.clickC.bind(par, this));
@@ -143,7 +140,7 @@ class Sudoku {
      */
     introduceNumber(number) {
         // si el número introducido es válido
-        if (this.checkRow(number) && this.checkColumn(number) && this.checkSquare(number)) {
+        if (!this.isPresentInRow(number) && !this.isPresentInColumn(number) && !this.isPresentInSquare(number)) {
             this.clicked.textContent = number;
             this.clicked.removeEventListener("click", this.clicked.clickC);
             this.clicked.setAttribute("data-state", this.CORRECT);
@@ -167,27 +164,31 @@ class Sudoku {
     /**
      * comprueba si existe un número igual que el pulsado en la misma fila de la celda seleccionada en la que se quiere introducir el número
      */
-    checkRow(numberToCheck) {
+    isPresentInRow(numberToCheck) {
         const currentRow = this.clicked.getAttribute("data-row");
         const isPresent = this.sudoku[currentRow].some((num) => num === numberToCheck);
 
+        if (isPresent)
+            console.log("presente en row");
         return isPresent;
     }
 
     /**
      * comprueba si existe un número igual que el pulsado en la misma columna de la celda seleccionada en la que se quiere introducir el número
      */
-    checkColumn(numberToCheck) {
+    isPresentInColumn(numberToCheck) {
         const currentColumn = this.clicked.getAttribute("data-col");
         const isPresent = this.sudoku.some((s) => s[currentColumn] === numberToCheck);
 
+        if (isPresent)
+            console.log("presente en column");
         return isPresent;
     }
 
     /**
      * comprueba si existe un número igual que el pulsado en el mimso bloque de 3x3 de la celda seleccionada en la que se quiere introducir el número
      */
-    checkSquare(numberToCheck) {
+    isPresentInSquare(numberToCheck) {
         const squareRow = Math.floor(this.clicked.getAttribute("data-row") / 3) * 3;
         const squareColumn = Math.floor(this.clicked.getAttribute("data-col") / 3) * 3;
 

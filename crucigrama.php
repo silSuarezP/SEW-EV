@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
     <link rel="stylesheet" type="text/css" href="estilo/crucigrama.css" />
+    <link rel="icon" href="multimedia/fotos/icono.jpg" />
 
     <script src="js/crucigrama.js"></script>
 </head>
@@ -59,6 +60,9 @@
 </script>
 
 
-
+<footer>
+    Página diseñada por Silvia Suárez Prendes con UO277412. 
+    Curso 2023/2024
+</footer>
 
 </html>
