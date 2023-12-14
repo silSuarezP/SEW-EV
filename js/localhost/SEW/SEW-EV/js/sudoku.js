@@ -9,7 +9,6 @@ class Sudoku {
     BLOCKED = "blocked";
     CLICKED = "clicked";
     CORRECT = "correct";
-    INIT = "init";
 
     clicked; // boolean
     warningShown; // boolean
@@ -31,7 +30,7 @@ class Sudoku {
 
 
     /**
-     * pone valores dentro de las celdas del array bidimensional "sudoku"
+     * pone valores dentro de las celdas del array bidimensional "arrayBoard"
      * el valor de cada posición se debe tomar de la cadena this.BOARD que se recorre caracter a caracter
      *      - si el valor en es numérico -> vuelca el mismo número en el array
      *      - si el valor es un "." -> introduce un 0 en dicha posición del array
@@ -44,9 +43,9 @@ class Sudoku {
             for (let j = 0; j < this.numCols; j++) {
                 let v = option[index++];
                 if (v != '.')
-                    this.sudoku[i][j] = parseInt(v);
+                    this.arrayBoard[i][j] = parseInt(v);
                 else
-                    this.sudoku[i][j] = 0;
+                    this.arrayBoard[i][j] = 0;
             }
         }
     }
@@ -65,11 +64,9 @@ class Sudoku {
                 par.setAttribute("data-row", i);
                 par.setAttribute("data-col", j);
 
-                console.log(v);
-
                 if (v == 0) {
                     par.setAttribute("data-state", this.INIT);
-                    par.addEventListener("click", this.clickC.bind(par, this));
+                        par.addEventListener("click", this.clickC.bind(par, this));
                 }
                 else {
                     par.textContent = v;
@@ -80,15 +77,12 @@ class Sudoku {
         }
     }
 
-    clickC(game) {
-        if (game.clicked) {
-            game.clicked.setAttribute("data-state", this.INIT);
+   clickC(game) {
+        if (!game.clicked) {
+            game.clicked.setAttribute("data-state", this.CLICKED);
+            game.clicked = this;
         }
-
-        this.setAttribute("data-state", game.CLICKED);
-        game.clicked = this;
-
-
+        game.clicked.setAttribute("data-state", this.INIT);
     }
 
     /**
@@ -109,7 +103,7 @@ class Sudoku {
     keydown(event) {
         // comprobación 1
         if (event.key > '0' && event.key <= '9') {
-            if (!this.clicked) {
+            if (!game.clicked) {
                 this.checkWarning()
             }
             else {
@@ -122,12 +116,12 @@ class Sudoku {
      * si no hay un aviso mostrado en pantalla, se crea uno nuevo y se muestra 
      */
     checkWarning() {
-        if (!this.warningShown) {
-            let warning = document.createElement("p");
+        if (!game.warningShown) {
+            let warning = document.createElement("body>p");
             warning.textContent = "Debes seleccionar una celda para introducir un número.";
 
             document.getElementsByTagName("body")[0].append(warning);
-            this.warningShown = true;
+            game.warningShown = true;
         }
     }
 
@@ -142,88 +136,47 @@ class Sudoku {
      *      - modificar el valor del atributo data-state a correct a la casilla seleccionada 
      */
     introduceNumber(number) {
-        // si el número introducido es válido
-        if (this.checkRow(number) && this.checkColumn(number) && this.checkSquare(number)) {
+        if (this.checkRow() && this.checkColumn() && this.checkSquare()) {
             this.clicked.textContent = number;
-            this.clicked.removeEventListener("click", this.clicked.clickC);
+            this.clicked.removeEventListener("click", this.clicked.click);
             this.clicked.setAttribute("data-state", this.CORRECT);
-            let x = this.clicked.getAttribute("data-row");
-            let y = this.clicked.getAttribute("data-col");
 
-            this.sudoku[x][y] = parseInt(number);
             this.checkBoard();
-        }
-
-        // si el número introducido no es válido
-        else {
-            this.clicked.setAttribute("data-state", this.INIT);
-
-            let warning = document.createElement("p");
-            warning.textContent = "El número introducido no es válido. Inténtelo de nuevo.";
-            document.getElementsByTagName("body")[0].append(warning);
         }
     }
 
     /**
      * comprueba si existe un número igual que el pulsado en la misma fila de la celda seleccionada en la que se quiere introducir el número
      */
-    checkRow(numberToCheck) {
-        const currentRow = this.clicked.getAttribute("data-row");
-        const isPresent = this.sudoku[currentRow].some((num) => num === numberToCheck);
+    checkRow() {
 
-        return isPresent;
     }
 
     /**
      * comprueba si existe un número igual que el pulsado en la misma columna de la celda seleccionada en la que se quiere introducir el número
      */
-    checkColumn(numberToCheck) {
-        const currentColumn = this.clicked.getAttribute("data-col");
-        const isPresent = this.sudoku.some((s) => s[currentColumn] === numberToCheck);
+    checkColumn() {
 
-        return isPresent;
     }
 
     /**
      * comprueba si existe un número igual que el pulsado en el mimso bloque de 3x3 de la celda seleccionada en la que se quiere introducir el número
      */
-    checkSquare(numberToCheck) {
-        const squareRow = Math.floor(this.clicked.getAttribute("data-row") / 3) * 3;
-        const squareColumn = Math.floor(this.clicked.getAttribute("data-col") / 3) * 3;
+    checkSquare() {
 
-        for (let r = 0; r < 3; r++) {
-            for (let c = 0; c < 3; c++) {
-                const nRow = squareRow + r;
-                const nCol = squareColumn + c;
-
-                if (this.sudoku[nRow][nCol] === numberToCheck) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     /**
      * comprueba si ya están rellenas todas las cuadrículas del sudoku
      */
     checkBoard() {
-        let isComplete = true;
-        for (let i = 0; i < this.numRows; i++) {
-            for (let j = 0; j < this.numCols; j++) {
-                if (this.sudoku[i][j] === 0)
-                    isComplete = false;
-            }
-        }
 
-        if (isComplete) {
-            // si todas las cuadrículas están llenas correctamente
-            // TODO condición
-            let congrats = document.createElement("p");
-            congrats.textContent = "Enhorabuena!!! Has completado el sudoku :)";
+        // si todas las cuadrículas están rellenas
+        let congrats = document.createElement("body>p");
+        congrats.textContent = "Enhorabuena!!! Has completado el sudoku :)";
 
-            document.getElementsByTagName("body")[0].append(congrats);
-        }
+        document.getElementsByTagName("body")[0].append(congrats);
+
     }
 }
 
