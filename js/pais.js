@@ -2,7 +2,7 @@
 
 class Pais {
 
-    // CONSTRUCTOR 2
+    // CONSTRUCTOR
     // nombre, capital, poblacion
     constructor(name, capitalName, population) {
         this.name = name;
@@ -39,9 +39,9 @@ class Pais {
     }
 
     // TO STRING
- 
+
     getInfo() {
-       return "Nombre del país: " + this.name + ".\nNombre de la capital: " + this.capitalName, ".\nPoblación: " + this.population + ".\nForma de gobierno: " + this.government + ".\nReligión mayoritaria: " + this.religion;
+        return "Nombre del país: " + this.name + ".\nNombre de la capital: " + this.capitalName, ".\nPoblación: " + this.population + ".\nForma de gobierno: " + this.government + ".\nReligión mayoritaria: " + this.religion;
     }
 
     getInfoHTML() {
@@ -75,7 +75,46 @@ class Pais {
         document.write("Las coordenadas del país son: " + this.latitude + ", " + this.longitude);
     }
 
+
+    // api_key = 18c76dd091c5ca9d98c472bf619dbeb4
+    getWeather() {
+        let url = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.latitude}&lon=${this.longitude}&appid=18c76dd091c5ca9d98c472bf619dbeb4`;
+        $.ajax({
+            dataType: "json",
+            url: url,
+            method: 'GET',
+            success: function (data) {
+                console.log("success");
+                let l = data.list.filter((e) => e.dt_txt.split(' ')[1] == '12:00:00');
+
+                l.forEach((item) => {
+                    let date = new Date(item.dt_txt);
+                    let day = date.toLocaleDateString('es-Es', { weekday: 'long' });
+                    let dateStr = date.toLocaleDateString('es-Es', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+                    let h3day = $("<h3></h3>").text(day);
+                    let pDate = $("<p></p>").text(dateStr);
+
+                    let temp = $("<h3></h3>").text(`${item.main.temp} ºC`);
+                    let maxTemp = $("<li></li>").text(`Máxima: ${item.main.temp_max}ºC`);
+                    let minTemp = $("<li></li>").text(`Mínima: ${item.main.temp_min}ºC`);
+                    let humidity = $("<li></li>").text(`Humedad: ${item.main.humidity}%`);
+                    let weatherList = $("<ul></ul>").append(maxTemp, minTemp, humidity);
+
+                    let iconUrl = `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`;
+                    let iconImg = $("<img></img>", { src: iconUrl, alt: item.weather[0].description });
+
+                    let article = $("<article></article>").append(iconImg, h3day, pDate, temp, weatherList);
+                    console.log(article);
+
+                    $("section").append(article);
+                });
+            }
+        });
+    }
 }
+
+
 
 /*
 nombre = Nauru

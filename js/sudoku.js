@@ -13,6 +13,7 @@ class Sudoku {
 
     clicked; // boolean
     warningShown; // boolean
+    incorrectNumberShown;
 
 
 
@@ -104,6 +105,9 @@ class Sudoku {
      *      3. si la tecla pulsada es un número pero no hay celda seleccionada, se debe informar al usuario que debe seleccionar una celda antes de puslar un número
      */
     keydown(event) {
+        let warning = document.querySelector("body>p");
+        if (warning)
+            warning.remove();
         // comprobación 1
         if (event.key > '0' && event.key <= '9') {
             if (!this.clicked) {
@@ -155,10 +159,14 @@ class Sudoku {
         else {
             this.clicked.setAttribute("data-state", this.INIT);
 
-            let warning = document.createElement("p");
-            warning.textContent = "El número introducido no es válido. Inténtelo de nuevo.";
-            document.getElementsByTagName("body")[0].append(warning);
+            if (!this.incorrectNumberShown) {
+                let warning = document.createElement("p");
+                warning.textContent = "El número introducido no es válido. Inténtelo de nuevo.";
+                document.getElementsByTagName("body")[0].append(warning);
+                this.incorrectNumberShown = true;
+            }
         }
+        this.clicked = undefined;
     }
 
     /**
@@ -166,11 +174,7 @@ class Sudoku {
      */
     checkRow(numberToCheck) {
         const currentRow = this.clicked.getAttribute("data-row");
-        console.log("current row: " + currentRow);
-        console.log(this.sudoku[currentRow]);
         const isPresent = this.sudoku[currentRow].some((num) => parseInt(num) === parseInt(numberToCheck));
-
-        console.log("ispresent: " + isPresent);
         return !isPresent;
     }
 
@@ -179,12 +183,8 @@ class Sudoku {
      */
     checkColumn(numberToCheck) {
         const currentColumn = this.clicked.getAttribute("data-col");
-        console.log("current column: " + currentColumn);
-        console.log(this.sudoku[currentColumn]);
         const isPresent = this.sudoku.some((s) => parseInt(s[currentColumn]) === parseInt(numberToCheck));
 
-        
-        console.log("ispresent: " + isPresent);
         return !isPresent;
     }
 
