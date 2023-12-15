@@ -10,9 +10,10 @@ class Pais {
         this.population = population;
     }
 
-    setOtherAttributes(government, coords, religion) {
+    setOtherAttributes(government, latitude, longitude, religion) {
         this.government = government;
-        this.coords = coords;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.religion = religion;
     }
 
@@ -58,9 +59,9 @@ class Pais {
     }
 
     // WRITE IN A DOCUMENT
-    writeCoordsInDoc(capitalCoordinates) {
+    writeCoordsInDoc(latitude, longitude) {
         // ?? check
-        document.write("Las coordenadas del país son: " + capitalCoordinates);
+        document.write("Las coordenadas del país son: " + latitude + ", " + longitude);
     }
 
 }
@@ -73,5 +74,5 @@ formaGobierno = república democrática parlamentaria
 coordenadasCapital = 0°32′52″S 166°55′15″E
 religion = cristianismo
 */
-// var paisNauru = new Pais("Nauru", "Yaren", 12511, "República democrática parlamentaria", "0°32′52″S 166°55′15″E", "Cristianismo");
+// var paisNauru = new Pais("Nauru", "Yaren", 12511, "República democrática parlamentaria", "-0.5333000", "166.9167000", "Cristianismo");
 var paisNauru = new Pais("Nauru", "Yaren", 12511);
