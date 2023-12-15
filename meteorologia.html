@@ -32,15 +32,16 @@
             <a href="juegos.html" accesskey="J" tabindex="7">Juegos</a>
         </nav>
     </header>
-    <h2>Meteorología</h2>
 
-
-
-    <!-- Ejercicio 1 - javascript -->
+    <h2>
+        <script>document.write(paisNauru.getName())</script>
+    </h2>
     <script>
         paisNauru = new Pais("Nauru", "Yaren", 12511);
         paisNauru.setOtherAttributes("República democrática parlamentaria", "-0.5333000", "166.9167000", "Cristianismo");
-        document.write("<h3>" + paisNauru.getInfo() + "<h3>");
+        document.write("<p>" + paisNauru.getInfoHTML() + "<p>");
+        document.write("<p>Información adicional que puede resultar interesante: " + paisNauru.getSecInfoHTML() + "<p>");
+        paisNauru.writeCoords();
     </script>
 
 </body>

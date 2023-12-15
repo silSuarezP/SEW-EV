@@ -140,7 +140,7 @@ class Sudoku {
      */
     introduceNumber(number) {
         // si el número introducido es válido
-        if (!this.isPresentInRow(number) && !this.isPresentInColumn(number) && !this.isPresentInSquare(number)) {
+        if (this.checkRow(number) && this.checkColumn(number) && this.checkSquare(number)) {
             this.clicked.textContent = number;
             this.clicked.removeEventListener("click", this.clicked.clickC);
             this.clicked.setAttribute("data-state", this.CORRECT);
@@ -164,31 +164,34 @@ class Sudoku {
     /**
      * comprueba si existe un número igual que el pulsado en la misma fila de la celda seleccionada en la que se quiere introducir el número
      */
-    isPresentInRow(numberToCheck) {
+    checkRow(numberToCheck) {
         const currentRow = this.clicked.getAttribute("data-row");
-        const isPresent = this.sudoku[currentRow].some((num) => num === numberToCheck);
+        console.log("current row: " + currentRow);
+        console.log(this.sudoku[currentRow]);
+        const isPresent = this.sudoku[currentRow].some((num) => parseInt(num) === parseInt(numberToCheck));
 
-        if (isPresent)
-            console.log("presente en row");
-        return isPresent;
+        console.log("ispresent: " + isPresent);
+        return !isPresent;
     }
 
     /**
      * comprueba si existe un número igual que el pulsado en la misma columna de la celda seleccionada en la que se quiere introducir el número
      */
-    isPresentInColumn(numberToCheck) {
+    checkColumn(numberToCheck) {
         const currentColumn = this.clicked.getAttribute("data-col");
-        const isPresent = this.sudoku.some((s) => s[currentColumn] === numberToCheck);
+        console.log("current column: " + currentColumn);
+        console.log(this.sudoku[currentColumn]);
+        const isPresent = this.sudoku.some((s) => parseInt(s[currentColumn]) === parseInt(numberToCheck));
 
-        if (isPresent)
-            console.log("presente en column");
-        return isPresent;
+        
+        console.log("ispresent: " + isPresent);
+        return !isPresent;
     }
 
     /**
      * comprueba si existe un número igual que el pulsado en el mimso bloque de 3x3 de la celda seleccionada en la que se quiere introducir el número
      */
-    isPresentInSquare(numberToCheck) {
+    checkSquare(numberToCheck) {
         const squareRow = Math.floor(this.clicked.getAttribute("data-row") / 3) * 3;
         const squareColumn = Math.floor(this.clicked.getAttribute("data-col") / 3) * 3;
 
@@ -197,12 +200,12 @@ class Sudoku {
                 const nRow = squareRow + r;
                 const nCol = squareColumn + c;
 
-                if (this.sudoku[nRow][nCol] === numberToCheck) {
-                    return true;
+                if (parseInt(this.sudoku[nRow][nCol]) === parseInt(numberToCheck)) {
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
 
     /**

@@ -39,8 +39,19 @@ class Pais {
     }
 
     // TO STRING
+ 
     getInfo() {
-       return "Nombre del país: " + this.name + "; Nombre de la capital: " + this.capitalName, "; Población: " + this.population + "; Forma de gobierno: " + this.government + "; Religión mayoritaria: " + this.religion;
+       return "Nombre del país: " + this.name + ".\nNombre de la capital: " + this.capitalName, ".\nPoblación: " + this.population + ".\nForma de gobierno: " + this.government + ".\nReligión mayoritaria: " + this.religion;
+    }
+
+    getInfoHTML() {
+        var res = `
+                <ul>
+                    <li>Nombre del país: ${this.name}</li>
+                    <li>Nombre de la capital: ${this.capitalName}</li>
+                </ul>
+            `;
+        return res;
     }
 
     getSecInfo() {
@@ -48,7 +59,7 @@ class Pais {
     }
 
     getSecInfoHTML() {
-        const res = `
+        var res = `
                 <ul>
                     <li>Población: ${this.population}</li>
                     <li>Forma de gobierno: ${this.government}</li>
@@ -59,9 +70,9 @@ class Pais {
     }
 
     // WRITE IN A DOCUMENT
-    writeCoordsInDoc(latitude, longitude) {
+    writeCoords(latitude, longitude) {
         // ?? check
-        document.write("Las coordenadas del país son: " + latitude + ", " + longitude);
+        document.write("Las coordenadas del país son: " + this.latitude + ", " + this.longitude);
     }
 
 }
@@ -71,7 +82,8 @@ nombre = Nauru
 capital = Yaren
 poblacion = 12511
 formaGobierno = república democrática parlamentaria
-coordenadasCapital = 0°32′52″S 166°55′15″E
+latitud = "-0.5333000"
+longitud = "166.9167000"
 religion = cristianismo
 */
 // var paisNauru = new Pais("Nauru", "Yaren", 12511, "República democrática parlamentaria", "-0.5333000", "166.9167000", "Cristianismo");
