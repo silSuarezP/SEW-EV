@@ -26,7 +26,7 @@ nav a {
 /* Especificidad: 011*/
 a:hover {
     background: #E7BCDE;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 /*Especificidad: 011*/
@@ -61,14 +61,14 @@ nav a {
 header a:link,
 header a:visited {
     text-decoration: none;
-    color: #021a2a;
+    color: #ffffff;
     font-weight: bold;
     font-size: 1.1em;
 }
 
 /* Especificidad: 011*/
 a:hover {
-    background: #F3C5C5;
+    background: #e4adad;
 }
 
 /*Especificidad: 012*/
