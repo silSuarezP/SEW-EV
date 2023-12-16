@@ -78,13 +78,13 @@ class Pais {
 
     // api_key = 18c76dd091c5ca9d98c472bf619dbeb4
     getWeather() {
-        let url = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.latitude}&lon=${this.longitude}&appid=18c76dd091c5ca9d98c472bf619dbeb4`;
+        var p = this;
+        let url = `https://api.openweathermap.org/data/2.5/forecast?lat=${p.latitude}&lon=${p.longitude}&appid=18c76dd091c5ca9d98c472bf619dbeb4`;
         $.ajax({
             dataType: "json",
             url: url,
             method: 'GET',
             success: function (data) {
-                console.log("success");
                 let l = data.list.filter((e) => e.dt_txt.split(' ')[1] == '12:00:00');
 
                 l.forEach((item) => {
@@ -104,8 +104,7 @@ class Pais {
                     let iconUrl = `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`;
                     let iconImg = $("<img></img>", { src: iconUrl, alt: item.weather[0].description });
 
-                    let article = $("<article></article>").append(iconImg, h3day, pDate, temp, weatherList);
-                    console.log(article);
+                    let article = $("<article></article>").append(h3day, pDate, iconImg, temp, weatherList);
 
                     $("section").append(article);
                 });

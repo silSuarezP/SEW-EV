@@ -1,13 +1,20 @@
 /*Silvia SUárez Prendes, UO277412*/
 
+/* paleta https://colorhunt.co/palette/f3c5c5c1a3a3886f6f694e4e */
+
+/*
+    header #886767;
+    body #f1e7e7;
+*/
+
 /* Especificidad: 001 */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #ffffff;
-    background-color: #84B6F4;
-    box-shadow: 0 0.7ex 1.2ex 0.25ex #042034;
+    background-color: #886767;
+    box-shadow: 0 0.7ex 1.2ex 0.25ex #694E4E;
     margin: 0;
     padding: 0;
 }
@@ -16,18 +23,18 @@ header {
 body {
     font-family: Vegur, 'PT Sans', Verdana, sans-serif;
     color: #000000;
-    background-color: rgb(229, 246, 250);
+    background-color: #f1e7e7;
     margin-left: 2em;
     font-size: 1em;
     text-align: justify;
     padding: 2em;
 }
 
+
 /* Especificidad: 001*/
 h1 {
     font-family: Vegur, 'PT Sans', Verdana, sans-serif;
-    color: #042034;
-    background-color: #84B6F4;
+    color: #021a2a;
     padding: 1em;
     text-transform: uppercase;
     text-align: center;

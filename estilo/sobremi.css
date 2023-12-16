@@ -31,7 +31,7 @@ caption {
         display: block;
         width: 100%;
         float: none;
-        background-color: rgb(229, 246, 250);
+        background-color: #f1e7e7;
         margin: 0;
         padding: 0;
         box-shadow: none;
@@ -44,11 +44,4 @@ caption {
     section h2 {
         margin: 1em;
     }
-
-
-    /**
-    grid-template-areas: 
-        "main main main"
-        "p article article"
-    */
 }

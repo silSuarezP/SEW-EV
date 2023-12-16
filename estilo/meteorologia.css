@@ -1,0 +1,67 @@
+/*Silvia Suárez Prendes, UO277412*/
+
+
+/*Especificidad: 001*/
+section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: space-around;
+}
+
+/*Especificidad: 002*/
+section article {
+    width: 20%;
+    color: #000000;
+    border-radius: 0.85em;
+    box-shadow: 0 .75ex .75ex #BB9CC0;
+    background-color: #C1A3A3;
+    margin: 2em 1em .5em 2em;
+    text-align: left;
+}
+
+/*Especificidad: 012*/
+article h3:last-of-type {
+    text-align: center;
+    margin: auto;
+}
+
+/*Especificidad: 012*/
+article h3:first-of-type {
+    margin: 1em auto 0.5em 1.5em;
+}
+
+/*Especificidad: 002*/
+article h3 {
+    font-variant: small-caps;
+    font-style: normal;
+    font-size: 1.5em;
+    margin: 0.75em auto 0 1.5em;
+}
+
+/*Especificidad: 002*/
+section p {
+    margin: 1em auto 0.5em 1.5em;
+}
+
+/*Especificidad: 002*/
+article img {
+    align-self: center;
+    margin: .25em 2em .25em 2em;
+    margin-left: 2em;
+}
+
+/*Especificidad: 002*/
+article ul {
+    list-style: circle;
+    margin: .25em 0.25em .25em 2em;
+}
+
+/*margin: 
+    - entre los elementos
+    - */
+/*Especificidad: 003*/
+article ul li {
+    margin: 0.75em auto;
+}
