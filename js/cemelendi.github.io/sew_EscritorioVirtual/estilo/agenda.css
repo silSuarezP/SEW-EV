@@ -1,0 +1,71 @@
+/* Celia Melendi Lavandera UO276077 */
+/*Especificidad: 001*/
+section{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em 1.5em;
+    justify-content: flex-start;
+    align-content: space-around;
+    margin-bottom: 2em;
+}
+/*Especificidad: 002*/
+section h2,
+/*Especificidad: 002*/
+section button {
+    flex-basis: 100%;
+}
+/*Especificidad: 002*/
+section button{
+    padding: .5em 0;
+    margin: 0 3em;
+    font-size: 1.3em;
+}
+/*Especificidad: 002*/
+section article {
+    border-radius: 1em;
+    box-shadow: 0 .5ex .5ex #274472;
+    margin: 0 auto;
+    padding: 0.5em 0.5em;
+    width: 25%;
+    border: .2em solid transparent;
+    background: linear-gradient(71deg, #F7C9B6, #F0E1DE, #F7C9B6);
+    background-clip: padding-box;
+}
+/*Especificidad: 002*/
+article h3{
+    font-style: normal;
+    margin: 0 auto 0 1.2em;
+    font-variant: small-caps;
+    font-size: 1.5em;
+}
+/*Especificidad: 002*/
+article h4 {
+    margin: 0 auto 0 2em;
+    font-size: 1.2em;
+}
+/*Especificidad: 002*/
+article p{
+    margin: 1em 6em 0 2em;
+}
+/*Especificidad: 012*/
+article p:first-child{
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+/*Especificidad: 002*/
+article img {
+    float: right;
+}
+
+@media only screen and (max-width: 768px) { 
+    /*Especificidad: 002*/
+    article h3 {
+        font-size: .9em;
+    }
+    /*Especificidad: 002*/
+    section article {
+        width: 90%;
+    }
+}

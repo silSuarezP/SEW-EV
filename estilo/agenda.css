@@ -1,0 +1,66 @@
+/*Silvia Suárez Prendes, UO277412*/
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* distribuye de forma uniforme los articles en cada fila */
+}
+
+/*Especificidad: 002*/
+section article {
+    box-shadow: 0 .75ex .75ex #BB9CC0;
+    color: #021a2a;
+    width: calc(25% - 1em);
+    height: fit-content;
+    border-radius: 0.85em;
+    box-shadow: 0 .75ex .75ex #6f5c5c;
+    background-color: #C1A3A3;
+    margin: 2em 1em .5em 2em;
+    /* margin: 2.5em 0.5em;  */
+    padding: 2em; 
+    text-align: left;
+}
+
+
+/*Especificidad: 001*/
+article {
+    flex: 1 0 calc(33.3333% - 1em);
+    width: 20%;
+    margin: 2.5em; 
+    padding: 2em; 
+    border: 1px solid #ccc; /* Opcional: agrega un borde para resaltar el artículo */
+}
+
+/*Especificidad: 012*/
+article>p:first-of-type {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*Especificidad: 002*/
+article h3 {
+    text-align: center;
+}
+
+
+/*Especificidad: 012*/
+section h3:first-of-type {
+    width: 100%; /* Hace que ocupe el 100% del ancho */
+    text-align: center;
+    margin-bottom: 1em; /* Ajusta el margen según tus necesidades */
+}
+
+
+@media only screen and (max-width: 768px) {
+    /*Especificidad: 002*/
+    article h3 {
+        font-size: 1em;
+    }
+
+    /*Especificidad: 011*/
+    section:last-of-type {
+        gap: 1ex 1ex;
+        width: 100%;
+    }
+}
