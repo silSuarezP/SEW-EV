@@ -51,13 +51,15 @@
 
     </main>
 
+    <script>
+        sud.paintSudoku();
+        document.addEventListener('keydown', function (event) {
+            sud.keydown(event);
+        });
+    </script>
+
 </body>
 
-<script>
-    sud.paintSudoku();
-    document.addEventListener('keydown', function (event) {
-        sud.keydown(event);
-    });
-</script>
+
 
 </html>

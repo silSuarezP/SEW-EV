@@ -77,9 +77,11 @@ class Pais {
 
 
     // api_key = 18c76dd091c5ca9d98c472bf619dbeb4
+    // https://api.openweathermap.org/data/2.5/forecast?lat=-0.5333000&lon=166.9167000&appid=18c76dd091c5ca9d98c472bf619dbeb4`
     getWeather() {
         var p = this;
         let url = `https://api.openweathermap.org/data/2.5/forecast?lat=${p.latitude}&lon=${p.longitude}&appid=18c76dd091c5ca9d98c472bf619dbeb4`;
+        
         $.ajax({
             dataType: "json",
             url: url,
@@ -95,9 +97,9 @@ class Pais {
                     let h3day = $("<h3></h3>").text(day);
                     let pDate = $("<p></p>").text(dateStr);
 
-                    let temp = $("<h3></h3>").text(`${item.main.temp} ºC`);
-                    let maxTemp = $("<li></li>").text(`Máxima: ${item.main.temp_max}ºC`);
-                    let minTemp = $("<li></li>").text(`Mínima: ${item.main.temp_min}ºC`);
+                    let temp = $("<h3></h3>").text(`${(item.main.temp - 273.15).toFixed(2)}ºC`);
+                    let maxTemp = $("<li></li>").text(`Máxima: ${(item.main.temp_max - 273.15).toFixed(2)}ºC`);
+                    let minTemp = $("<li></li>").text(`Mínima: ${(item.main.temp_min - 273.15).toFixed(2)}ºC`);
                     let humidity = $("<li></li>").text(`Humedad: ${item.main.humidity}%`);
                     let weatherList = $("<ul></ul>").append(maxTemp, minTemp, humidity);
 

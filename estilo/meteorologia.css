@@ -21,6 +21,11 @@ section article {
     text-align: left;
 }
 
+/*Especificidad: 002*/
+section h2 {
+    width: 100%;
+}
+
 /*Especificidad: 012*/
 article h3:last-of-type {
     text-align: center;
