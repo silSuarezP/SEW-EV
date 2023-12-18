@@ -1,0 +1,32 @@
+
+/*Silvia SUárez Prendes, UO277412*/
+
+/*Especificidad: (0,0,1)*/
+body {
+    font-family: "Cambria Math", sans-serif;
+    background-color: #F3C4FF;
+    color: rgb(0, 0, 0);
+    padding: 2em;
+}
+
+/*Especificidad: (0,0,1)*/
+h1, h2, h3 {
+    font-size: 1.5em;
+    text-align: center;
+    background-color: #F165A2;
+}
+
+main {
+    width: 100%;
+    height: 30vw;
+}
+
+article {
+    width: 100%;
+    height: 30vw;
+}
+
+section {
+    width: 100%;
+    height: 30vw;
+}

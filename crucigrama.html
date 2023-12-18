@@ -9,11 +9,15 @@
     <meta name="keywords" content="Juegos" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Juegos: Crucigrama</title>
-    <link rel="stylesheet" type="text/css" href="estilo/memoria.css" />
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
     <link rel="stylesheet" type="text/css" href="estilo/crucigrama.css" />
+
     <link rel="icon" href="multimedia/fotos/icono.jpg" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 
     <script src="js/crucigrama.js"></script>
 </head>
@@ -30,6 +34,7 @@
             <a href="meteorologia.html" accesskey="M" tabindex="5">Meteorología</a>
             <a href="viajes.html" accesskey="V" tabindex="6">Viajes</a>
             <a href="juegos.html" accesskey="J" tabindex="7">Juegos</a>
+            <a href="ficheroApi.html" accesskey="M" tabindex="8">Mapa</a>
         </nav>
     </header>
 
@@ -55,6 +60,9 @@
 
     <script>
         crucigrama.paintMathWord();
+        document.addEventListener('keydown', function (event) {
+            crucigrama.handleKeydown(event);
+        });
     </script>
 
 </body>

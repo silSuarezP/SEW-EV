@@ -5,24 +5,30 @@
     <!-- Datos que describen el documento -->
     <meta charset="UTF-8" />
     <meta name="author" content="Silvia Suárez Prendes" />
-    <meta name="description" content="Meteorología" />
-    <meta name="keywords" content="Meteorología" />
+    <meta name="description" content="Noticias" />
+    <meta name="keywords" content="Noticias" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meteorología</title>
+    <title>Noticias</title>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
-    <link rel="stylesheet" type="text/css" href="estilo/meteorologia.css" />
+
     <link rel="icon" href="multimedia/fotos/icono.jpg" />
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-    <script src="js/pais.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_VTPfMRljUs0W9lJzBQpMt3VyepKDdYo&callback=geo.mostrarMapa"></script>
+
+    <script src="js/ficheroApi.js"></script>
+
+
+
+    <!-- api key google maps AIzaSyB_VTPfMRljUs0W9lJzBQpMt3VyepKDdYo -->
+
 </head>
 
-
-
-<body onload>
+<body>
     <!-- Datos con el contenido que aparece en el navegador -->
     <header>
         <h1>Escritorio virtual</h1>
@@ -38,24 +44,33 @@
         </nav>
     </header>
 
-    <h2>
-        <script>document.write(paisNauru.getName());</script>
-    </h2>
-    <script>
-        paisNauru = new Pais("Nauru", "Yaren", 12511);
-        paisNauru.setOtherAttributes("República democrática parlamentaria", "-0.5333000", "166.9167000", "Cristianismo");
-        document.write("<p>" + paisNauru.getInfoHTML() + "<p>");
-        document.write("<p>Información adicional que puede resultar interesante: " + paisNauru.getSecInfoHTML() + "<p>");
-        paisNauru.writeCoords();
-    </script>
+    <h2>Mapa</h2>
 
-    <section>
-        <h2>Previsión meteorológica para los próximos 5 días</h2>
+    <main>
+        <p>
+            <label for="file">Seleccione el archivo KML para mostrar ubicaciones en el mapa: </label>
+            <input type="file" id="file" onchange="pKML.cargarArchivos(this.files)">
+        </p>
 
-        <script>
-            paisNauru.getWeather();  
-        </script>
-    </section>
+        <p>
+            <button onclick=tiempo.cargarDatos()>Cargar datos de todas las ciudades</button>
+            <button onclick=geo.mostrarMapa()>Ver ciudades en el mapa</button>
+            <button onclick=geo.mostrarMiUbicacion()>Ver mi ubicación en el mapa</button>
+            <button onclick=geo.mapaPantallaCompleta()>Ver mapa en pantalla completa</button>
+        </p>
+        <article>
+            <h2>Información:</h2>
+        </article>
+        <section>
+            <h3>Mapa:</h3>
+            <script>
+                google.maps.event.addEventListener(window, 'load', function () {
+                    geo.mostrarMapa()
+                });
+            </script>
+        </section>
+    </main>
+
 
 </body>
 

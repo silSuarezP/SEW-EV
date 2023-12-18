@@ -10,7 +10,12 @@
     <title>Noticias</title>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/noticias.css" />
+
     <link rel="icon" href="multimedia/fotos/icono.jpg" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Datos con el contenido que aparece en el navegador -->
@@ -24,9 +29,35 @@
             <a href="meteorologia.html" accesskey="M" tabindex="5">Meteorología</a>
             <a href="viajes.html" accesskey="V" tabindex="6">Viajes</a>
             <a href="juegos.html" accesskey="J" tabindex="7">Juegos</a>
+            <a href="ficheroApi.html" accesskey="M" tabindex="8">Mapa</a>
         </nav>
     </header>
+
     <h2>Noticias</h2>
-    <p>Sin desarrollar</p>
+
+    <main>
+        <label for="archivo">Cargar noticias</label>
+        <input type="file" id="archivo" onchange="noticias.readInputFile(this.files)">
+    </main>
+
+    <script src="js/noticias.js"></script>
+
+    <section>
+        <h2>Añade una noticia</h2>
+        <h3>Rellena el siguiente formulario con los datos de la noticia.</h3>
+
+        <label for="titular">Titular</label>
+        <input type="text" id="titular" name="titular">
+        <label for="entradilla">Entradilla</label>
+        <input type="text" id="entradilla" name="entradilla">
+        <label for="texto">Texto</label>
+        <input type="text" id="texto" name="texto">
+        <label for="autor">Autor</label>
+        <input type="text" id="autor" name="autor">
+
+        <button onclick="noticias.add()">Añadir</button>
+    </section>
+
+
 </body>
 </html>

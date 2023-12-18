@@ -1,0 +1,86 @@
+/*Silvia Suárez Prendes, UO277412*/
+
+/*Especificidad: 001*/
+main {
+    display: block;
+
+
+    justify-content: flex-start;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em 1.5em;
+}
+
+/*Especificidad: 002*/
+/*Especificidad: 002*/
+main label,
+main input {
+    display: block;
+    width: 100%;
+    margin-bottom: 1em; /* Agregado para dar espacio entre cada etiqueta e input */
+}
+
+/*Especificidad: 002*/
+main article {
+    width: 100%;
+    color: #000000;
+    border-radius: 0.85em;
+    box-shadow: 0 .75ex .75ex #BB9CC0;
+    background-color: #C1A3A3;
+    margin: 2em 1em .5em 2em;
+    text-align: left;
+    border-radius: 1.5em;
+}
+
+/*Especificidad: 002*/
+/*Especificidad: 002*/
+/*Especificidad: 002*/
+article h2,
+article h3,
+article p {
+    margin: 2em 1em .5em 2em;
+}
+
+/*Especificidad: 002*/
+article h2 {
+    text-align: center;
+}
+
+/*Especificidad: 012*/
+article>p:last-of-type{
+    text-align: right;
+}
+
+/*Especificidad: 002*/
+section button {
+    background-color: #886767;
+    color: #ffffff;
+    margin: auto;
+    padding: .5em 1em;
+    font-size: 1em;
+    border-radius: 1em;
+    font-weight: bold;
+}
+
+/*Especificidad: 012*/
+section>button:hover {
+    background-color: #574242;
+    color: #ffffff;
+}
+
+/*Especificidad: 021*/
+input[type="file"]::file-selector-button {
+    background-color: #886767;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 2em;
+}
+
+/*Especificidad: 031*/
+input[type="file"]::file-selector-button:hover {
+    background-color: #574242;
+    color: #ffffff;
+}

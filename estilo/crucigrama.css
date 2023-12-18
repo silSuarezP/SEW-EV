@@ -6,9 +6,7 @@ main {
     height: 500px;
     display: grid;
     gap: 0;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    border: .2em solid black;
+    grid-template-columns: repeat(9, 1fr);
     margin: 0 auto 1.25em;
 }
 
@@ -22,21 +20,30 @@ main>p {
     background-color: #f0e1d1a1;
 }
 
-/*Especificidad: 022*/
-main>p:nth-child(3n):not(:nth-child(9n)) {
-    border-right: .15em solid black;
+/*Especificidad: 012*/
+main>p[data-row="0"] {
+    border-top: .3em solid black;
 }
 
 /*Especificidad: 012*/
-main>p[data-row="2"],
+main>p[data-row="10"] {
+    border-bottom: .3em solid black;
+}
+
+
 /*Especificidad: 012*/
-main>p[data-row="5"] {
-    border-bottom: .15em solid black;
+main>p[data-col="0"] {
+    border-left: .3em solid black;
 }
 
 /*Especificidad: 012*/
-main>p[data-state="blocked"] {
-    font-weight: bold;
+main>p[data-col="8"] {
+    border-right: .3em solid black;
+}
+
+/*Especificidad: 012*/
+main>p[data-state="empty"] {
+   background-color: #000000 ;
 }
 
 /*Especificidad: 002*/
@@ -54,7 +61,7 @@ section:last-of-type>h2 {
 }
 
 /*Especificidad: 002*/
-body>p {
+body>p:last-of-type {
     color: #F3E9E7;
     background-color: #7F1010;
     padding: .3em;

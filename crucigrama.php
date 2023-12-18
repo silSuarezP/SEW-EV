@@ -5,17 +5,21 @@
     <!-- Datos que describen el documento -->
     <meta charset="UTF-8" />
     <meta name="author" content="Silvia Suárez Prendes" />
-    <meta name="description" content="Viajes" />
-    <meta name="keywords" content="Viajes" />
+    <meta name="description" content="Juegos" />
+    <meta name="keywords" content="Juegos" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Viajes</title>
+    <title>Juegos: Crucigrama</title>
+    <link rel="stylesheet" type="text/css" href="estilo/memoria.css" />
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/crucigrama.css" />
     <link rel="icon" href="multimedia/fotos/icono.jpg" />
+
+    <script src="js/crucigrama.js"></script>
 </head>
 
+
 <body>
-    <!-- Datos con el contenido que aparece en el navegador -->
     <header>
         <h1>Escritorio virtual</h1>
         <nav>
@@ -26,11 +30,39 @@
             <a href="meteorologia.html" accesskey="M" tabindex="5">Meteorología</a>
             <a href="viajes.html" accesskey="V" tabindex="6">Viajes</a>
             <a href="juegos.html" accesskey="J" tabindex="7">Juegos</a>
-            <a href="ficheroApi.html" accesskey="M" tabindex="8">Mapa</a>
         </nav>
     </header>
-    <h2>Viajes</h2>
-    <p>Sin desarrollar</p>
+
+    <section>
+        <h2>Juegos</h2>
+        <ul>
+            <li><a href="memoria.html">Memoria</a></li>
+            <li><a href="sudoku.html">Sudoku</a></li>
+            <li><a href="crucigrama.php">Crucigrama</a></li>
+        </ul>
+    </section>
+
+
+    <section>
+        <h2>Crucigrama</h2>
+    </section>
+
+
+    <main>
+            
+
+    </main>
+
 </body>
+
+<script>
+    // TODO
+</script>
+
+
+<footer>
+    Página diseñada por Silvia Suárez Prendes con UO277412. 
+    Curso 2023/2024
+</footer>
 
 </html>

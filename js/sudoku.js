@@ -82,7 +82,6 @@ class Sudoku {
         if (game.clicked) {
             game.clicked.setAttribute("data-state", this.INIT);
         }
-
         this.setAttribute("data-state", game.CLICKED);
         game.clicked = this;
     }
