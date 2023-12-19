@@ -54,6 +54,7 @@ class Geolocalizacion {
         });
 
         $("article").remove();
+        $("section").after("<button name=\"mapaPantallaCompleta\"onclick= geo.mapaPantallaCompleta()>Ver mapa en pantalla completa</button>");
     }
 
     mostrarMiUbicacion() {
@@ -69,6 +70,7 @@ class Geolocalizacion {
         });
 
         $("article").remove();
+        $("section").after("<button name=\"mapaPantallaCompleta\"onclick=geo.mapaPantallaCompleta()>Ver mapa en pantalla completa</button>");
     }
 
     mapaPantallaCompleta() {
@@ -88,7 +90,7 @@ class Geolocalizacion {
     }
 }
 
-var geo = new Geolocalizacion(43.36029, -5.84476);
+var geo = new Geolocalizacion(0, 0);
 
 
 
@@ -118,6 +120,12 @@ class Tiempo {
     }
 
     cargarDatos() {
+        let article = $("<article>");
+        let h2 = document.createElement("h2");
+        h2.textContent = "Información";
+
+        article.append(h2);
+
         for (var i = 0; i < this.ciudad.length; i++) {
             this.mostrarDatos(this.ciudad[i]);
         }
@@ -161,6 +169,7 @@ class Tiempo {
 
                 $("h3").hide();
                 $("h2").after(st);
+
 
             }, error: function () {
                 $("h3").html("Error. No se ha podido obtener el JSON de <a href='http://openweathermap.org'>OpenWeatherMap</a>");
@@ -230,8 +239,29 @@ class ProcesadorKML {
 
             reader.readAsText(archivo);
 
+
         } else
             document.write("<p>Oh no! Este navegador no soporta API File</p>");
+
+        this.writeElements();
+        var main = document.getElementsByTagName('main')[0];
+        console.log(main.textContent);
+    }
+
+    writeElements() {
+        let st = '<p>';
+        st += '<label for="file">Seleccione el archivo KML para mostrar ubicaciones en el mapa: </label>';
+        st += '<input type="file" id="file" onchange="pKML.cargarArchivos(this.files)">';
+        st += '</p>';
+        st = '<p>';
+        st += '<button onclick=tiempo.cargarDatos()>Cargar datos de todas las ciudades</button>';
+        st += '<button onclick=geo.mostrarMapa()>Ver ciudades en el mapa</button>';
+        st += '<button onclick=geo.mostrarMiUbicacion()>Ver mi ubicación en el mapa</button>';
+        st += '<p>';
+
+        var main = document.getElementsByTagName('main')[0];
+        main.append(st);
+        console.log(main.textContent);
     }
 }
 

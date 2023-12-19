@@ -8,20 +8,22 @@
     <meta name="description" content="Noticias" />
     <meta name="keywords" content="Noticias" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noticias</title>
+    <title>Mapa</title>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/ficheroApi.css" />
+    
 
     <link rel="icon" href="multimedia/fotos/icono.jpg" />
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_VTPfMRljUs0W9lJzBQpMt3VyepKDdYo&callback=geo.mostrarMapa"></script>
 
     <script src="js/ficheroApi.js"></script>
-
 
 
     <!-- api key google maps AIzaSyB_VTPfMRljUs0W9lJzBQpMt3VyepKDdYo -->
@@ -56,21 +58,12 @@
             <button onclick=tiempo.cargarDatos()>Cargar datos de todas las ciudades</button>
             <button onclick=geo.mostrarMapa()>Ver ciudades en el mapa</button>
             <button onclick=geo.mostrarMiUbicacion()>Ver mi ubicación en el mapa</button>
-            <button onclick=geo.mapaPantallaCompleta()>Ver mapa en pantalla completa</button>
         </p>
-        <article>
-            <h2>Información:</h2>
-        </article>
-        <section>
-            <h3>Mapa:</h3>
-            <script>
-                google.maps.event.addEventListener(window, 'load', function () {
-                    geo.mostrarMapa()
-                });
-            </script>
-        </section>
     </main>
 
+    <section>
+        
+    </section>
 
 </body>
 

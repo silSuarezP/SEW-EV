@@ -11,7 +11,18 @@
     <title>Viajes</title>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/viajes.css" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
     <link rel="icon" href="multimedia/fotos/icono.jpg" />
+
+    <script src="js/viajes.js"></script>
+
 </head>
 
 <body>
@@ -29,8 +40,32 @@
             <a href="ficheroApi.html" accesskey="M" tabindex="8">Mapa</a>
         </nav>
     </header>
+
     <h2>Viajes</h2>
-    <p>Sin desarrollar</p>
+
+    <main></main>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_VTPfMRljUs0W9lJzBQpMt3VyepKDdYo&callback=mapaDinamicoGoogle.initMap">
+        </script>
+
+    <button onclick=viajes.mostrarInfo()>Mostrar mapa estático</button>
+
+    <p>
+        <label for="file">Seleccione el archivo KML para mostrar ubicaciones en el mapa</label>
+        <input id="file" type="file" data-element='kml' accept=".kml" onchange="viajes.cargarArchivos(this.files)" multiple="">
+    </p>
+
+
+    <p>
+        <label for="upload">Seleccione el archivo XML que desea procesar</label>
+        <input id="upload" data-element='xml' type="file" accept=".xml" name="upload" onchange="viajes.informacionArchivos()">
+    </p>
+
+    <section>
+        
+    </section>
+
+
 </body>
 
 </html>
