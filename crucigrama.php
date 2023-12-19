@@ -1,6 +1,7 @@
 <?php
 
-class Record{
+class Record
+{
     private $server;
     private $user;
     private $pass;
@@ -12,19 +13,25 @@ class Record{
     public string $level;
     public string $time;
 
-    
-    function __construct(){
+    public string $recForm = "";
+    public string $top10 = "";
+
+
+    function __construct()
+    {
         $this->server = "localhost";
         $this->user = "DBUSER2023";
         $this->pass = "DBPSWD2023";
-        $this->dbname = "record";
+        $this->dbname = "crucigrama";
 
         $this->recForm = "";
         $this->top10 = "";
     }
 
-
-
+    function getRecForm()
+    {
+        return $this->recForm;
+    }
 
     function addData()
     {
@@ -34,21 +41,23 @@ class Record{
         if ($db->connect_error) {
             die("Error de conexión: " . $db->connect_error);
         }
-    
-        echo "<h2>Conexión establecida</h2>";
+        if (
+            isset($_POST["nombre"], $_POST["apellidos"], $_POST["nivel"], $_POST["tiempo"]) &&
+            !empty($_POST["nombre"]) && !empty($_POST["apellidos"])
+        ) {
+            if ($db->select_db($this->dbname)) {
+                // Comando para insertar
+                $query = $db->prepare("INSERT INTO record (nombre, apellidos, nivel, tiempo) VALUES (?,?,?,?)");
 
-        // Comando para insertar
-        $query = $db->prepare("INSERT INTO record (nombre, apellidos, nivel, tiempo) VALUES (?,?,?,?)");
+                $query->bind_param(
+                    'sssi', $_POST["nombre"], $_POST["apellidos"], $_POST["nivel"], $_POST["tiempo"]);
+                $query->execute();
 
-        if ($query) {
-            $query->bind_param(
-                'sssi', $_POST["nombre"], $_POST["apellidos"], $_POST["nivel"], $_POST["tiempo"] );
-            $query->execute();
+                // Printear los resultados de la inserción
+                echo "<p>Filas añadidas: " . $query->affected_rows . "</p>";
 
-            // Printear los resultados de la inserción
-            echo "<p>Filas añadidas: " . $query->affected_rows . "</p>";
-
-            $query->close();
+                $query->close();
+            }
         }
 
         $db->close();
@@ -56,79 +65,91 @@ class Record{
         $_SESSION['stored'] = true;
     }
 
-
-    function getTopTen() {
+    function getTopTen()
+    {
         $db = new mysqli($this->server, $this->user, $this->pass);
 
         // Comprobar la conexion
         if ($db->connect_error) {
             die("Error de conexión: " . $db->connect_error);
         }
-           
-        $query = "SELECT * FROM record ORDER BY tiempo ASC LIMIT 10";
 
-        if ($query) {
+        if ($db->select_db($this->dbname)) {
+            $query = $db->prepare("SELECT * FROM record WHERE nivel=? ORDER BY tiempo ASC LIMIT 10");
             $query->bind_param('s', $_POST['nivel']);
             $query->execute();
 
-            $res->$query->get_result();
+            $res = $query->get_result();
 
+            $this->top10 = '<h2>Top 10 mejores resultados</h2>';
+            $this->top10 .= '<ol>';
 
-            $this->top10 = '<h3>Top 10 mejores resultados</h3>';
-            $this->top10 += '<ol>';
-
-            while($row = $res->fetch_assoc()){
-                $t = sprintf('%02d:%02d:%02d', $row['tiempo']/3600, $row['tiempo']/60%60, $row['tiempo']%60);
-                $this->top10 .= '<li>'. $row['nombre'] . ' ' . $row['apellidos'] . ' ' . $time . '</li>';
+            while ($row = $res->fetch_assoc()) {
+                $t = sprintf('%02d:%02d:%02d', $row['tiempo'] / 3600, $row['tiempo'] / 60 % 60, $row['tiempo'] % 60);
+                $this->top10 .= '<li>' . $row['nombre'] . ' ' . $row['apellidos'] . ' ' . $this->time . '</li>';
             }
-            
+
             $this->top10 .= '</ol>';
 
             $query->close();
         }
 
         $db->close();
-        return $top10;
+        return $this->top10;
     }
 
-    function showForm($name, $surname, $level, $time) {
+    function showForm($name, $surname, $level, $time)
+    {
         $this->recForm = '<form action="#" method="post">';
+
+        $this->recForm += '<p>';
         $this->recForm += '<label for="nombre">Nombre:</label>';
         $this->recForm += '<input type="text" id="nombre" name="nombre" value="' . $name . '">';
+        $this->recForm += '</p>';
+
+        $this->recForm += '<p>';
         $this->recForm += '<label for="apellidos">Apellidos:</label>';
         $this->recForm += '<input type="text" id="apellidos" name="apellidos" value="' . $surname . '">';
+        $this->recForm += '</p>';
+
+        $this->recForm += '<p>';
         $this->recForm += '<label for="nivel">Nivel:</label>';
         $this->recForm += '<input type="text" value="medio" readonly="readonly" id="nivel" name="nivel" value="' . $level . '">';
+        $this->recForm += '</p>';
+
+        $this->recForm += '<p>';
         $this->recForm += '<label for="tiempo">Duración del juego:</label>';
         $this->recForm += '<input type="text" value="1s" readonly="readonly" id="duracion" name="tiempo" value="' . $time . '">';
+        $this->recForm += '</p>';
+
+        $this->recForm += '<p>';
         $this->recForm += '<input type="submit" value="Enviar" name="completo">';
         $this->recForm += '</form>';
+        $this->recForm += '</p>';
     }
 }
 
 
-    $rec = new Record();
-    
-    session_start();
+$rec = new Record();
 
-    if (count($_POST) <= 0) {
-        $rec->addData();
-    } else {
-        $rec->name = $_POST['nombre'];
-        $rec->surname = $_POST['apellidos'];
-        $rec->level = $_POST['nivel'];
+session_start();
 
-        $rec->time = $_POST['tiempo'];
-        $rec->time = intval($rec->time);
-        
-        showForm($rec->name, $rec->surname, $rec->level, $rec->time);
-    }                    
+if (count($_POST) <= 0) {
+    $rec->addData();
+} 
+// else {
+//     if (isset($_POST['completo'])) {
+//         if (!empty($_POST['nombre']) || !empty($_POST['apellidos'])) {
+//             $rec->showForm($_POST['nombre'], $_POST['apellidos'], $_POST['nivel'], intval($_POST['tiempo']));
+//         }
+//     }
+// }
 
 
-    if ($_SESSION['stored']) {
-        $rec->getTopTen();
-        $_SESSION['stored'] = false;
-    }
+if (isset($_SESSION['stored']) && $_SESSION['stored']) {
+    $rec->getTopTen();
+    $_SESSION['stored'] = false;
+}
 
 ?>
 
@@ -148,13 +169,14 @@ class Record{
     <title>Juegos: Crucigrama</title>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
-    <link rel="stylesheet" type="text/css" href="estilo/crucigrama.css" />
     <link rel="stylesheet" type="text/css" href="estilo/botonera.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/crucigrama.css" />
+
 
     <link rel="icon" href="multimedia/fotos/icono.jpg" />
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 
     <script src="js/crucigrama.js"></script>
@@ -194,19 +216,18 @@ class Record{
     <main>
 
     </main>
-    <?php echo $rec->getTopTen();
-            echo $rec->showForm();
-        ?>
+    <?php
+    echo $rec->getTopTen();
+    echo $rec->getRecForm();
+    ?>
 
-  
+
     <script>
         crucigrama.paintMathWord();
         document.addEventListener('keydown', function (event) {
             crucigrama.handleKeydown(event);
         });
     </script>
-
-
 
 
     <section data-type="botonera">

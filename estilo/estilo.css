@@ -3,7 +3,7 @@
 /* paleta https://colorhunt.co/palette/f3c5c5c1a3a3886f6f694e4e */
 
 /*
-    header #886767;
+    header #684e4e;
     body #f1e7e7;
 */
 
@@ -13,7 +13,7 @@ header {
     justify-content: space-between;
     align-items: center;
     color: #ffffff;
-    background-color: #886767;
+    background-color: #684e4e;
     box-shadow: 0 0.7ex 1.2ex 0.25ex #694E4E;
     margin: 0;
     padding: 0;

@@ -24,10 +24,12 @@ section[data-type=botonera] {
 
     /* Especificidad: 012 */
     section[data-type=botonera] button {
+        font-weight: bold;
+        font-size: 1.25em;
         width: calc(15% - 1em);
         height: 4em;
         text-align: center;
-        background-color: #000;
-        color: #FFF;
+        background-color: #684e4e;
+        color: #ffffff;
     }
 }

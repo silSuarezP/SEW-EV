@@ -194,13 +194,30 @@ class Crucigrama {
                         }
                     }
                 }
-
+            }
+        } else if (r < this.numRows) {
+            if (c < this.numCols - 1) {
+                if (this.crucigrama[r][c + 1] != -1) {
+                    for (let j = c + 1; j < this.numCols; j++) {
+                        if (this.crucigrama[r][j] === "=") {
+                            first_number = this.crucigrama[r][j - 3];
+                            second_number = this.crucigrama[r][j - 1];
+                            expression = this.crucigrama[r][j - 2];
+                            result = this.crucigrama[r][j + 1];
+                            break;
+                        }
+                    }
+                    // si toda la expresion está rellena, calcular si es correcta
+                    if (first_number != 0 && second_number != 0 && expression != 0 && result != 0) {
+                        var e = [first_number, expression, second_number].join("");
+                        expression_row = result == eval(e);
+                    }
+                }
             }
         }
 
         this.checkRowColumn(expression_row, expression_column, this.clicked, this.clicked.getAttribute("data-row"), this.clicked.getAttribute("data-col"), value);
         this.checkFinish();
-
     }
 
     /**
@@ -217,6 +234,7 @@ class Crucigrama {
             removeEventListener("keydown", this.hk);
             this.createRecordForm();
         }
+        return this.check_win_condition();
     }
 
     /**
@@ -266,49 +284,48 @@ class Crucigrama {
 
     createRecordForm() {
         let form = $("<form>");
-        
         form.attr("action", "#");
         form.attr("method", "post");
         form.attr("name", "recordform");
-
-        let name = $("<input>");
-        name.attr("type", "text");
-        name.attr("name", "nombre");
-        name.attr("placeholder", "Nombre");
-
-        let surname = $("<input>");
-        surname.attr("type", "text");
-        surname.attr("name", "apellidos");
-        surname.attr("placeholder", "Apellidos");
-       
-        let level = $("<input>");
-        level.attr("type", "text");
-        level.attr("name", "nivel");
-        level.attr("value", `${this.nivel}`)
-        level.attr("readonly", "true");
-
-        let time = $("<input>");
-        time.attr("type", "text");
-        time.attr("name", "tiempo");
-        time.attr("value", `${this.getSeconds()}`);
-        time.attr("readonly", "true");
-
+        
+        let nameInput = $("<input>");
+        nameInput.attr("type", "text");
+        nameInput.attr("id", "nombre");
+        nameInput.attr("name", "nombre");
+        
+        let surnameInput = $("<input>");
+        surnameInput.attr("type", "text");
+        surnameInput.attr("id", "apellidos");
+        surnameInput.attr("name", "apellidos");
+        
+        let levelInput = $("<input>");
+        levelInput.attr("type", "text");
+        levelInput.attr("id", "nivel");
+        levelInput.attr("name", "nivel");
+        levelInput.attr("readonly", "true");
+        levelInput.val(this.level);
+        
+        let timeInput = $("<input>");
+        timeInput.attr("type", "text");
+        timeInput.attr("id", "duracion");
+        timeInput.attr("name", "tiempo");
+        timeInput.attr("readonly", "true");
+        timeInput.val(this.getSeconds() + " seconds");
+        
         let button = $("<input>");
         button.attr("type", "submit");
-        button.attr("value", "Guardar");
+        button.attr("value", "Enviar");
+        button.attr("name", "completo");
         
-        form.append(name);
-        form.append(surname);
-        form.append(level);
-        form.append(time);
-        form.append(button);
-
+        form.append('<p>').append("<label for='nombre'>Nombre:</label>").append(nameInput);
+        form.append('<p>').append("<label for='apellidos'>Apellidos:</label>").append(surnameInput);
+        form.append('<p>').append("<label for='nivel'>Nivel:</label>").append(levelInput);
+        form.append('<p>').append("<label for='tiempo'>Duración del juego:</label>").append(timeInput);
+        form.append('<p>').append(button);
+        
         $('main').after(form);
-
-        console.log("que sí, que llega aquí");
     }
 
 }
 
 var crucigrama = new Crucigrama();
-crucigrama.createRecordForm();
