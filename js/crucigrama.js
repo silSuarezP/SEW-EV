@@ -233,11 +233,11 @@ class Crucigrama {
         }
     }
 
-    calculateSeconds() {
-        // la diferencia esta en milisegundos
-        let dif = this.end_time - this.init_time;
-        // calcular segundos
-        return Math.floor(dif / 1000);
+    /**
+     * devuelve el tiempo que ha tardado el usuario en completar el crucigrama en segundos
+     */
+    getSeconds() {
+        return Math.floor((this.end_time - this.init_time) / 1000);
     }
 
     handleKeydown(event) {
@@ -265,26 +265,50 @@ class Crucigrama {
     }
 
     createRecordForm() {
-        // añadir con jquery un formulario debajo del crucigrama cuando se haya completado
-        let form = $("<form>").attr("action", "#").attr("method", "post").attr("name", "record");
-        let nombre = $("<input>").attr("type", "text").attr("name", "nombre").attr("placeholder", "Nombre");
-        form.append(nombre);
+        let form = $("<form>");
+        
+        form.attr("action", "#");
+        form.attr("method", "post");
+        form.attr("name", "recordform");
 
-        let apellidos = $("<input>").attr("type", "text").attr("name", "apellidos").attr("placeholder", "Apellidos");
-        form.append(apellidos);
+        let name = $("<input>");
+        name.attr("type", "text");
+        name.attr("name", "nombre");
+        name.attr("placeholder", "Nombre");
 
-        let nivel = $("<input>").attr("type", "text").attr("name", "nivel").attr("value", `${this.nivel}`).attr("readonly", "true");
-        form.append(nivel);
+        let surname = $("<input>");
+        surname.attr("type", "text");
+        surname.attr("name", "apellidos");
+        surname.attr("placeholder", "Apellidos");
+       
+        let level = $("<input>");
+        level.attr("type", "text");
+        level.attr("name", "nivel");
+        level.attr("value", `${this.nivel}`)
+        level.attr("readonly", "true");
 
-        let tiempo = $("<input>").attr("type", "text").attr("name", "tiempo").attr("value", `${this.calculateSeconds()}`).attr("readonly", "true");
-        form.append(tiempo);
+        let time = $("<input>");
+        time.attr("type", "text");
+        time.attr("name", "tiempo");
+        time.attr("value", `${this.getSeconds()}`);
+        time.attr("readonly", "true");
 
-        let boton = $("<input>").attr("type", "submit").attr("value", "Guardar");
-        form.append(boton);
+        let button = $("<input>");
+        button.attr("type", "submit");
+        button.attr("value", "Guardar");
+        
+        form.append(name);
+        form.append(surname);
+        form.append(level);
+        form.append(time);
+        form.append(button);
 
-        $('article[data-element="crucigrama"]').after(form);
+        $('main').after(form);
+
+        console.log("que sí, que llega aquí");
     }
 
 }
 
 var crucigrama = new Crucigrama();
+crucigrama.createRecordForm();

@@ -1,0 +1,33 @@
+/*Silvia SUárez Prendes, UO277412*/
+
+/* Especificidad: 011 */
+section[data-type=botonera] {
+    /* visibility: hidden; */
+    margin-top: 6em;
+}
+
+@media only screen and (max-width: 1280px) {
+    /* Especificidad: 011 */
+    section[data-type=botonera] {
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    /* Especificidad: 012 */
+    section[data-type=botonera] h2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Especificidad: 012 */
+    section[data-type=botonera] button {
+        width: calc(15% - 1em);
+        height: 4em;
+        text-align: center;
+        background-color: #000;
+        color: #FFF;
+    }
+}
