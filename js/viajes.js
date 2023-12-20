@@ -38,7 +38,9 @@ class Viajes {
     }
 
     mostrarInfo() {
-        var datos = "<p>" + this.aux + "</p>";
+        var datos = "<article>";
+        datos += "<h3> Información: </h3>";
+        datos += "<p>" + this.aux + "</p>";
         datos += '<p>Longitud: ' + this.longitud + ' grados</p>';
         datos += '<p>Latitud: ' + this.latitud + ' grados</p>';
         datos += '<p>Precisión de la longitud y latitud: ' + this.precision + ' metros</p>';
@@ -46,9 +48,9 @@ class Viajes {
         datos += '<p>Precisión de la altitud: ' + this.precisionAltitud + ' metros</p>';
         datos += '<p>Rumbo: ' + this.rumbo + ' grados</p>';
         datos += '<p>Velocidad: ' + this.velocidad + ' metros/segundo</p>';
+        datos += "</article>";
 
-        $('input').after(datos);
-
+        $("input[data-element='xml']").after(datos);
 
         this.mostrarMapaEstatico();
     }
@@ -228,6 +230,46 @@ class Viajes {
         } else
             document.write("<p>Oh no! Este navegador no soporta API File</p>");
     }
+
+
+
+
+
+    /////////////////////////////////////// PHP ////////////////////////////////////////////////////
+    nextPhoto() {
+        console.log("next pulsao");
+        let photos = document.querySelectorAll("img[data-element='cImg']");
+        let lastPhoto = photos.length - 1;
+        if (this.currentPhoto != lastPhoto) {
+            this.currentPhoto++;
+        } else {
+            this.currentPhoto = 0;
+        }
+        photos.forEach((photo, index) => {
+            var disp = index - this.currentPhoto;
+            var disp = 100 * disp;
+
+           $(photo).css('transform', `translateX(${disp}%)`);
+        });
+    }
+
+    previousPhoto() {
+        console.log("previous pulsao");
+        let photos = document.querySelectorAll("img[data-element='cImg']");
+        let lastPhoto = photos.length - 1;
+        if (this.currentPhoto != 0) {
+            this.currentPhoto--;
+        } else {
+            this.currentPhoto = lastPhoto;
+        }
+        photos.forEach((photo, index) => {
+            var disp = index - this.currentPhoto;
+            var disp = 100 * disp;
+
+           $(photo).css('transform', `translateX(${disp}%)`);
+        });
+    }
+
 }
 
 var viajes = new Viajes();

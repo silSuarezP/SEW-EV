@@ -18,21 +18,19 @@
             $json = json_decode($respuesta);
 
             $html = "<article data-element='carrusel'>";
-            $html .= "<h3>Carrusel de imágenes</h3>";
+            $html .= "<h2>Carrusel de imágenes</h2>";
 
             for($index = 0; $index < $pp; $index++) {
 
                 $urlPhoto = str_replace("_m.jpg", "_b.jpg", $json->items[$index]->media->m);
 
-                $imgHTML = "<img data-element='carruselImg' alt='Foto [" . $index . "] de Nauru' src='".$urlPhoto."' />";
+                $imgHTML = "<img data-element='cImg' alt='Foto [" . $index . "] de Nauru' src='".$urlPhoto."' />";
 
                 $html .= $imgHTML;
             }
 
-            $html .= "<button onclick='viajes.nextPhoto()' data-action='next'>";
-            $html .= "</button>";
-            $html .= "<button data-action='prev' onclick='viajes.previousPhoto()'>" ;
-            $html .= "</button>";
+            $html .= "<button data-action='next' onclick='viajes.nextPhoto()' > &rarr; </button>";
+            $html .= "<button data-action='previous' onclick='viajes.previousPhoto()'> &larr; </button>";
             $html .= "</article>";
             return $html;
         }
@@ -92,17 +90,18 @@
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
     <link rel="stylesheet" type="text/css" href="estilo/viajes.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/carrusel.css" />
+
+
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
     <link rel="icon" href="multimedia/fotos/icono.jpg" />
 
     <script src="js/viajes.js"></script>
-
 </head>
 
 <body>
@@ -121,22 +120,23 @@
         </nav>
     </header>
 
-    <h2>Viajes</h2>
+    <?php
+        $c = new Moneda('ALL', 'EUR');
+        echo $c->consultaCambio();
+
+        $car = new Carrusel('Nauru', 'Yaren');
+        echo $car->getCarrusel();
+    ?>
 
     <main></main>
-    <script>
-        let viajes = new Viajes();
 
-        <?php
-        $("button[data-action='next']").on("click", viajes.next());
-        $("button[data-action='prev']").on("click", viajes.previous());
-        $cambio = new Moneda('ALL', 'EUR');
-            echo $cambio->consultaCambio();
-            $carrusel = new Carrusel('Tirana', 'Albania');
-            echo $carrusel->getPhotos();
-        ?>
+
+    <script>
+        $("button[data-action='next']").on("click", viajes.nextPhoto());
+        $("button[data-action='previous']").on("click", viajes.previousPhoto());
 
     </script>
+
 
          
             
